@@ -1,4 +1,4 @@
-./build
+build/
 qrc_*cxx
 *.orig
 *.pyc
