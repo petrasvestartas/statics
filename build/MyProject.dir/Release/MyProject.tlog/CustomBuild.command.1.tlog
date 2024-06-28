@@ -1,0 +1,10 @@
+^C:\BRG\2_CODE\GEO\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/brg/2_code/geo -BC:/brg/2_code/geo/build --check-stamp-file C:/brg/2_code/geo/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

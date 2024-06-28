@@ -1,0 +1,360 @@
+#pragma once
+#include <string>
+#include "globals.hpp"
+#include <cmath>
+#include <sstream>
+#include <iostream>
+#include <vector>
+#include <math.h>
+#include <array>
+
+namespace geo
+{
+
+    /**
+     * @class Vector
+     * @brief A class representing a Vector in 3D space.
+     */
+    class Vector
+    {
+    public:
+        /**
+         * @brief Default constructor. Initializes the Vector at the origin.
+         */
+        Vector();
+
+        /**
+         * @brief Constructor that initializes the Vector at the given coordinates.
+         * @param x The x-coordinate.
+         * @param y The y-coordinate.
+         * @param z The z-coordinate.
+         */
+        Vector(double x, double y, double z);
+
+        /**
+        * @brief convert vector to string
+        */
+        std::string to_string() const;
+
+        /**
+         * @brief Returns a unit vector along the x-axis.
+         * 
+         * @return Vector The unit vector along the x-axis.
+         */
+        static Vector XAxis();
+
+        /**
+         * @brief Returns a unit vector along the y-axis.
+         * 
+         * @return Vector The unit vector along the y-axis.
+         */
+        static Vector YAxis();
+
+        /**
+         * @brief Returns a unit vector along the z-axis.
+         * 
+         * @return Vector The unit vector along the z-axis.
+         */
+        static Vector ZAxis();
+
+        /**
+         * @brief Returns a vector from start to end.
+         * 
+         * @param start The start vector.
+         * @param end The end vector.
+         * @return Vector The vector from start to end.
+         */
+        static Vector from_start_and_end(const Vector& start, const Vector& end);
+
+        /**
+         * @brief Subscript operator for non-const access.
+         * @param index The index of the coordinate to access (0 for x, 1 for y, 2 for z).
+         * @return A reference to the coordinate at the given index.
+         */
+        double& operator[](int index);
+
+        /**
+         * @brief Subscript operator for const access.
+         * @param index The index of the coordinate to access (0 for x, 1 for y, 2 for z).
+         * @return A const reference to the coordinate at the given index.
+         */
+        const double& operator[](int index) const;
+
+        /**
+         * @brief Scale the vector by a factor (multiplication).
+         * @param factor The factor to scale the vector by.
+         * @return A reference to the vector after scaling.
+         */
+        Vector& operator*=(double factor);
+
+        /**
+         * @brief Scale the vector by a factor (division).
+         * @param factor The factor to scale the vector by.
+         * @return A reference to the vector after scaling.
+         */
+        Vector& operator/=(double factor);
+
+        /**
+         * @brief Add another vector to this vector.
+         * @param other The vector to add.
+         * @return A reference to the vector after addition.
+         */
+        Vector& operator+=(const Vector &other);
+
+        /**
+         * @brief Subtract another vector from this vector.
+         * @param other The vector to subtract.
+         * @return A reference to the vector after subtraction.
+         */
+        Vector& operator-=(const Vector &other);
+
+        /**
+         * @brief Multiply the vector by a factor.
+         * @param factor The factor to multiply the vector by.
+         * @return A new vector that is the result of the multiplication.
+         */
+        Vector operator*(double factor) const;
+
+        /**
+         * @brief Divide the vector by a factor.
+         * @param factor The factor to divide the vector by.
+         * @return A new vector that is the result of the division.
+         */
+        Vector operator/(double factor) const;
+
+        /**
+         * @brief Add another vector to this vector.
+         * @param other The vector to add.
+         * @return A new vector that is the result of the addition.
+         */
+        Vector operator+(const Vector &other) const;
+
+        /**
+         * @brief Subtract another vector from this vector.
+         * @param other The vector to subtract.
+         * @return A new vector that is the result of the subtraction.
+         */
+        Vector operator-(const Vector &other) const;
+
+        /**
+         * @brief Check if this vector is equal to another vector.
+         * @param other The vector to compare with.
+         * @return True if the vectors are equal, false otherwise.
+         */
+        bool operator==(const Vector &other) const;
+
+        /**
+         * @brief Check if this vector is not equal to another vector.
+         * @param other The vector to compare with.
+         * @return True if the vectors are not equal, false otherwise.
+         */
+        bool operator!=(const Vector &other) const;
+
+        /**
+         * @brief Negate the vector.
+         * @return A new vector that is the result of the negation.
+         */
+        Vector operator-() const;
+
+        /**
+         * @brief Reverse the vector.
+         * @return A new vector that is the result of the reversal.
+         */
+        void Vector::reverse();
+
+        /**
+         * @brief Get a length of a vector.
+         * @return A vector distance.
+         */
+        double length();
+
+        /**
+         * @brief Get a squared length of a vector.
+         * @return True if a vector is unitized.
+         */
+        bool unitize();
+
+        /**
+         * @brief Get a squared length copy of a vector.
+         * @return True if a vector is unitized.
+         */
+        Vector unitized();
+
+        /**
+         * @brief Compute the component of this vector in the direction of another vector.
+         * 
+         * @param other The other vector.
+         * @return Vector The component of this vector in the direction of the other vector.
+         */
+        Vector component(Vector& other);
+
+        /**
+         * Check if two vectors are parallel or anti-parallel or not-paralel
+         * tolerance geo::GLOBALS::ANGLE in degrees
+         *
+         * @param [in] v vector
+         * @return 1: this and other vectors are and parallel
+         * -1: this and other vectors are anti-parallel
+         * 0: this and other vectors are not parallel or at least one of the vectors is zero
+         * 1: this and other vectors are parallel
+         */
+        int is_parallel_to(Vector &v);
+
+        /**
+         * @brief Calculate a dot product of a vector. 
+         * And check if two vectors are parallel=1 or anti-parallel=-1 or orthogonal = 0.
+         * Dot product can be used to calculate the angle between two vectors if the magnitude of vectors is known.
+         * @return Dot product.
+         */
+        double dot(Vector &other);
+
+        /**
+         * @brief Calculate a cross product of a vector.
+         * The cross product of two vectors A and B  yields the vector C, which is written C = A x B.
+         * The length of a cross product = |C| = |A| * |B| * sin(theta)
+         * Laws:
+         * 1. Order matters: A x B != B x A, only works by changing the sign A x B = -B x A
+         * 2. Scaling: a(A x B) = (aA) x B = A x (aB) = a(A x B)
+         * 3. Distributive law of addition, order matters: A x (B + C) = A x B + A x C
+         * 
+         * 
+         * The cross product of two vectors results in a third vector that is orthogonal (perpendicular) to the original two vectors.
+         * The magnitude (length) of the cross product vector is equal to the area of the parallelogram that the two vectors span.
+         * @return Cross product.
+         */
+        Vector cross(Vector &other);
+
+        // /**
+        //  * @brief Direction of a cross product
+        //  * i x j = k, i x k = -j, i x i = 0
+        //  * j x k = i, j x i = -k, j x j = 0
+        //  * k x i = j, k x j = -i, k x k = 0
+        //  * where i, j, k are x, y, z unit vectors
+        // */
+        // int cross_product_sign(Vector &other);
+
+        /**
+         * @brief Calculate an angle between two vectors.
+         * @return Angle.
+         */
+        double Vector::angle(Vector &other);
+
+        /**
+         * Scale the vector to the given vertical height
+         * Often used for CNC machining
+         *
+         * @param [in] vertical_height vertical height of the vector
+         * @return scaled vector, whose vertical component length is equal to the vertical_height
+         */
+        Vector get_leveled_vector(double &vertical_height);
+
+        /**
+        * Get the third triangle edge length.
+        * When two triangle edges and angle in between them is known.
+        * 
+        * The Law of Cosines states:
+        * C = sqrt(A^2 + B^2 - 2AB * cos(c))
+        *
+        * Here's an ASCII art representation of a triangle:
+        *
+        *        c
+        *        /\
+        *       /  \
+        *    A /    \ B
+        *     /      \
+        *    /________\
+        *   b     C    a
+        * 
+        * @param [in] triangle_edge_length_a first edge length
+        * @param [in] triangle_edge_length_b second edge length
+        * @param [in] angle_in_degrees_between_edges angle between the edges that will be used in cosine function
+        * @return the length of opposite triangle length
+        */
+        static double cosine_law(double& triangle_edge_length_a, double& triangle_edge_length_b, double& angle_in_degrees_between_edges);
+
+        /**
+         * Compute and edge of a triangle or the angle in front of it.
+         *
+         * The Law of Sines states:
+         * (A / sin(a)) = (B / sin(b)) = (C / sin(c))
+         *
+         *
+         *        c
+         *        /\
+         *       /  \
+         *    A /    \ B <--- triangle_edge_length_b
+         *     /      \
+         *    /________\
+         *   b     C    a
+         * 
+         * @param [in] triangle_edge_length_a any other triangle edge length
+         * @param [in] angle_in_degrees_in_front_of_a triangle angle opposite of that edge
+         * @param [in] triangle_edge_length_b the length of searchable triangle edge
+         * @return the angle in front of the edge b
+        */
+        static double sine_law_angle(double& triangle_edge_length_a, double& angle_in_degrees_in_front_of_a, double& triangle_edge_length_b);
+
+        /**
+         * Compute and edge of a triangle or the angle in front of it.
+         * 
+         *
+         * The Law of Sines states:
+         * (A / sin(a)) = (B / sin(b)) = (C / sin(c))
+         *
+         *
+         *        c
+         *        /\
+         *       /  \
+         *    A /    \ B 
+         *     /      \
+         *    /________\
+         *   b     C    a
+         *   |
+         *   triangle_edge_length_b
+         * 
+         * @param [in] triangle_edge_length_a any other triangle edge length
+         * @param [in] angle_in_degrees_in_front_of_a triangle angle opposite of that edge
+         * @param [in] angle_in_degrees_in_front_of_b the angle in front of searchable triangle edge
+         * @return the length of searchable triangle edge
+        */
+        static double sine_law_length(double& triangle_edge_length_a, double& angle_in_degrees_in_front_of_a, double& angle_in_degrees_in_front_of_b);
+
+        /**
+         * @brief Scales the Vector by a given factor.
+         * @param factor The factor to scale by.
+         */
+        void scale(double factor);
+
+        /**
+         * @brief Scales the Vector up by a factor of global SCALE.
+         */
+        void scale_up();
+
+        /**
+         * @brief Scales the Vector down by a factor of global SCALE.
+         */
+        void scale_down();
+
+        /**
+         * @brief Unitize a vector and scale it to a given length.
+         * @param factor The factor to rescale by.
+         */
+        void Vector::rescale(double factor);
+
+        // /**
+        //  * @brief Transform the vector by a given matrix.
+        //  * @param matrix - The matrix to transform by.
+        //  */
+        // void transform(const double matrix[4][4]);
+
+    private:
+        /**
+         * @brief The coordinates of the Vector.
+         */
+        double _xyz[3];
+        bool _has_length;
+        double _length;
+        bool _has_unit_vector;
+        
+    };
+}  // namespace geo

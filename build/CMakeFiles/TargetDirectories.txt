@@ -1,0 +1,3 @@
+C:/brg/2_code/geo/build/CMakeFiles/MyProject.dir
+C:/brg/2_code/geo/build/CMakeFiles/ALL_BUILD.dir
+C:/brg/2_code/geo/build/CMakeFiles/ZERO_CHECK.dir
