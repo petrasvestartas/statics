@@ -2,7 +2,7 @@
 
 C++ header only library inspired by the book **Engineering Mechanics STATICS** by R. C. Hibbeler.
 
-This repository is created for self-learning purposes, by always being annoyed of not knowing even a little bit of Statics...
+This repository is created for self-learning purposes, driven by the frustration of not knowing even the basics of Statics....
 
 ## Compilation
 **Windows**
