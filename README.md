@@ -3,7 +3,8 @@
 C++ header only library inspired by the book "Engineering Mechanics STATICS" by R. C. Hibbeler.
 This repository is created for self-learning purposes, because the contents of this book is mainly used in code.
 
-Compile Windows (Mac and Ubuntu would work similarly -> there are no dependencies):
+## Compilation
+Windows (Mac and Ubuntu would work similarly -> there are no dependencies):
 
 ```bash
 cd C:\brg\2_code\statics
@@ -14,4 +15,5 @@ cmake --build . --config Release
 .\Release\MyProject.exe
 ```
 
+## Why it started
 <img width="783" alt="image" src="https://github.com/petrasvestartas/statics/assets/18013985/bde2fff1-ce70-49c9-9abf-495edb5b7266">
