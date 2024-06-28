@@ -15,5 +15,5 @@ cmake --build . --config Release
 .\Release\MyProject.exe
 ```
 
-## It started from wanting to known the Moments, and gradually know more...
+## It started from wanting to learn about the Moments, and gradually learn more...
 <img width="783" alt="image" src="https://github.com/petrasvestartas/statics/assets/18013985/bde2fff1-ce70-49c9-9abf-495edb5b7266">
