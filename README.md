@@ -1,8 +1,9 @@
 # statics
 
 C++ header only library inspired by the book "Engineering Mechanics STATICS" by R. C. Hibbeler.
+This repository is created for self-learning purposes, because the contents of this book is mainly used in code.
 
-Compile:
+Compile Windows (Mac and Ubuntu would work similarly -> there are no dependencies):
 
 ```bash
 cd C:\brg\2_code\statics
