@@ -1,13 +1,6 @@
 #include "point_and_vector.hpp"
 
 namespace geo {
-    Point operator+(const Point& p, const Vector& v) {
-        return Point(p[0] + v[0], p[1] + v[1], p[2] + v[2]);
-    }
-
-    Point operator-(const Point& p, const Vector& v) {
-        return Point(p[0] - v[0], p[1] - v[1], p[2] - v[2]);
-    }
 
     std::array<int, 2> moment_component_signs_varignon(Point& p, Vector &v){
 

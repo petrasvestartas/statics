@@ -7,6 +7,11 @@ namespace geo
 
     Line::Line(const Point& p1, const Point& p2) : points{p1, p2} {}
 
+    Line::Line(const double& x0, const double& y0, const double& z0, const double& x1, const double& y1, const double& z1){
+        points[0] = Point(x0, y0, z0);
+        points[1] = Point(x1, y1, z1);
+    }
+
     Point& Line::operator[](int index) {
         return points[index];
     }
@@ -45,6 +50,46 @@ namespace geo
             (line[0][2] == line[1][2]) ? line[0][2] : s * line[0][2] + t * line[1][2]);
     }
 
+    void Line::scale(double factor){
+        points[0][0] *= factor;
+        points[0][1] *= factor;
+        points[0][2] *= factor;
+        points[1][0] *= factor;
+        points[1][1] *= factor;
+        points[1][2] *= factor;
+    }
+
+    Line Line::scaled(double factor){
+        return Line(
+                points[0][0]+factor,
+                points[0][1]+factor,
+                points[0][2]+factor,
+                points[1][0]+factor,
+                points[1][1]+factor,
+                points[1][2]+factor
+            );
+    }
+
+    void Line::translate(Vector& translation_vector){
+        points[0][0]+=translation_vector[0];
+        points[0][1]+=translation_vector[1];
+        points[0][2]+=translation_vector[2];
+        points[1][0]+=translation_vector[0];
+        points[1][1]+=translation_vector[1];
+        points[1][2]+=translation_vector[2];
+    }
+
+    Line Line::translated(Vector& translation_vector){
+        return Line(
+                points[0][0]+translation_vector[0],
+                points[0][1]+translation_vector[1],
+                points[0][2]+translation_vector[2],
+                points[1][0]+translation_vector[0],
+                points[1][1]+translation_vector[1],
+                points[1][2]+translation_vector[2]
+            );
+    }
+
     // bool closest_point_to(const Point &point, double &t)
     // {
     //     bool rc = false;
@@ -77,14 +122,5 @@ namespace geo
     //     return -std::atan(delta.hy() / delta.hx());
     // }
 
-    void Line::scale_up() {
-        points[0].scale_up();
-        points[1].scale_up();
-    }
-
-    void Line::scale_down() {
-        points[0].scale_down();
-        points[1].scale_down();
-    }
 
 }

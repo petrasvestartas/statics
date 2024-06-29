@@ -2,6 +2,7 @@
 #include "tests/test_vector.hpp"
 #include "tests/test_point_and_vector.hpp"
 #include "tests/test_arc.hpp"
+#include "tests/test_limit_analysis.hpp"
 
 // Main function - execution starts here
 int main() {
@@ -9,5 +10,6 @@ int main() {
     test_vector_main();
     test_point_and_vector_main();
     test_arc_main();
+    test_limit_analysis_main();
     return 0; // Returns 0 to signal the end of the program
 }

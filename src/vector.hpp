@@ -151,12 +151,6 @@ namespace geo
         bool operator!=(const Vector &other) const;
 
         /**
-         * @brief Negate the vector.
-         * @return A new vector that is the result of the negation.
-         */
-        Vector operator-() const;
-
-        /**
          * @brief Reverse the vector.
          * @return A new vector that is the result of the reversal.
          */

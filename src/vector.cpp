@@ -110,11 +110,6 @@ namespace geo
         return !(*this == other);
     }
 
-    Vector Vector::operator-() const
-    {
-        return Vector(-_xyz[0], -_xyz[1], -_xyz[2]); // replace x, y, z with your actual member variable names
-    }
-
     void Vector::reverse() {
         for (size_t i = 0; i < 3; ++i)
             _xyz[i] = -_xyz[i];

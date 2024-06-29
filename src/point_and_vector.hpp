@@ -1,27 +1,8 @@
 #pragma once
-#include "./core.hpp" 
+#include "core.hpp" 
 
 namespace geo{
     
-    /**
-     * @brief Adds a vector to a point.
-     * 
-     * @param p The point to which the vector will be added.
-     * @param v The vector to be added to the point.
-     * @return Point The result of adding the vector to the point.
-     */
-    Point operator+(const Point& p, const Vector& v);
-
-    /**
-     * @brief Subtracts a vector from a point.
-     * 
-     * @param p The point from which the vector will be subtracted.
-     * @param v The vector to be subtracted from the point.
-     * @return Point The result of subtracting the vector from the point.
-     */
-    Point operator-(const Point& p, const Vector& v);
-
-
     /**
     * @brief Given a 2d vector, decompose it into x and y components. Then determine the signs of each vector.
     * Source Pierre Varignon's theorem. Source: Engineering Mechanics Statics, by R. C. Hibbeler, 12th edition, page 13.

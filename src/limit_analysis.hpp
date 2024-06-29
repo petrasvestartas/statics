@@ -1,13 +1,10 @@
 #pragma once
-
-#include "Point.hpp"
-#include "Vector.hpp"
-#include "Line.hpp"
+#include "core.hpp"
+#include "arc.hpp"
+#include "offset_2d.hpp"
 
 namespace geo
 {
-
-
     /**
      * @class shell_2d
      * @brief Represents a 2D shell element with reactions, eccentricities, weight, and centroid.
@@ -15,26 +12,38 @@ namespace geo
      * This class models a 2D shell element, encapsulating its physical and geometric properties,
      * including the reactions at the shell's supports, the eccentricities of these reactions,
      * the weight of the shell, and the calculated centroid based on its geometry.
+     * 
+     * Example:
+     * @code
+     * // Create a 2D shell element
+     * geo::shell_2d shell({{-4, 0, 0}, {0, 0.4, 0}, {4, 0, 0}}, 0.12, 480, 1000, 0.04, 0.04);
      */
-    class shell_2d{
+    class Shell{
 
         public:
-            std::array<Vector, 2> reactions; ///< Reactions at the shell's supports.
-            std::array<Line, 2> eccentricities; ///< Eccentricities of the reactions.
-            double weight; ///< Weight of the shell.
-            geo::Point centroid; ///< Calculated centroid of the shell.
+
+            // UNITS ARE NEWTONS AND METERS
+
+            Vector Vl; ///< Left vertical reaction.
+            Vector Hl; ///< Left horizontal reaction.
+            Line el; ///< Left eccentricity line.
+
+            Vector Vr; ///< Right vertical reaction.
+            Vector Hr; ///< Right horizontal reaction.
+            Line er; ///< Right eccentricity line.
+
+            Vector W; ///< Weight of the shell.
+            Point c; ///< Calculated centroid of the shell.
 
 
-            shell_2d(std::array<Point, 3> arc_points, double thickness, double density, double horizontal_reaction, double eccentricity0, double eccentricity1){
-                
-            }
+            Shell(std::array<Point, 3> arc_points, double thickness, double density, double horizontal_reaction, double eccentricity0, double eccentricity1, int divisions = 10);
 
 
 
     };
 
 
-    class block_2d{
+    class Block{
 
         public:
             double weight;

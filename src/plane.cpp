@@ -62,11 +62,4 @@ namespace geo
         equation[3] = -(normal[0] * point[0] + normal[1] * point[1] + normal[2] * point[2]);
     }
 
-    void Plane::scale_up() {
-        point.scale_up();
-    }
-
-    void Plane::scale_down() {
-        point.scale_down();
-    }
 }

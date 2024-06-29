@@ -1,7 +1,5 @@
 #pragma once
-
-#include "Point.hpp"
-#include "Vector.hpp"
+#include "core.hpp" // Include the header of the class you're testing
 
 
 namespace geo {

@@ -7,8 +7,9 @@ void Arc::calculate_arc_properties() {
     Point midStart = start_point.mid_point(mid_point);
     Point midEnd = mid_point.mid_point(end_point);
 
-    Point startToMid = mid_point - start_point;
-    Point midToEnd = end_point - mid_point;
+
+    Vector startToMid = mid_point - Vector(start_point[0], start_point[1], start_point[2]);
+    Vector midToEnd = end_point - Vector(mid_point[0], mid_point[1], mid_point[2]);
 
     Point bisector1 = Point(-startToMid[1], startToMid[0], 0);
     Point bisector2 = Point(-midToEnd[1], midToEnd[0], 0);
@@ -20,9 +21,9 @@ void Arc::calculate_arc_properties() {
         throw std::runtime_error("Invalid arc: points are collinear or too close to each other.");
     }
 
-    Point vecBetweenMidpoints = midEnd - midStart;
+    Vector vecBetweenMidpoints = midEnd - Vector(midStart[0], midStart[1], midStart[2]);
     double t = (vecBetweenMidpoints[0] * bisector2[1] - vecBetweenMidpoints[1] * bisector2[0]) / det;
-    center = midStart + bisector1 * t;
+    center = midStart + Vector(bisector1[0], bisector1[1], bisector1[2]) * t;
 
     // Calculate radius
     radius = center.distance(start_point);

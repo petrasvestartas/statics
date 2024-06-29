@@ -6,6 +6,10 @@ namespace geo
 
     Point::Point(double x, double y, double z) : _xyz{x, y, z} {}
 
+    Vector Point::to_vector(){
+        return Vector(_xyz[0], _xyz[1], _xyz[2]);
+    }
+
     double& Point::operator[](int index) {
         return _xyz[index];
     }
@@ -50,16 +54,14 @@ namespace geo
         return result;
     }
 
-    Point Point::operator+(const Point &other) const {
-        Point result = *this;
-        result += other;
+    Point Point::operator+(const Vector &other) const {
+        Point result(_xyz[0]+other[0], _xyz[1]+other[1], _xyz[2]+other[2]);
         return result;
     }
 
-    Point Point::operator-(const Point &other) const {
-        Point result = *this;
-        result -= other;
-        return result;
+    Vector Point::operator-(const Vector &other) const {
+        Vector v(_xyz[0]-other[0], _xyz[1]-other[1], _xyz[2]-other[2]);
+        return v;
     }
 
     bool Point::operator==(const Point &other) const {
@@ -69,11 +71,6 @@ namespace geo
 
     bool Point::operator!=(const Point &other) const {
         return !(*this == other);
-    }
-
-    Point Point::operator-() const
-    {
-        return Point(-_xyz[0], -_xyz[1], -_xyz[2]); // replace x, y, z with your actual member variable names
     }
 
     double Point::x() const {
@@ -206,20 +203,47 @@ namespace geo
     // }
 
 
+    double Point::area(std::vector<Point> &polygon)
+    {
+        size_t n = polygon.size();
+        double area = 0.0;
+        for (size_t i = 0; i < n; ++i) {
+            size_t j = (i + 1) % n; // next vertex index, wrapping around
+            area += polygon[i][0] * polygon[j][1];
+            area -= polygon[j][0] * polygon[i][1];
+        }
+        return std::fabs(area) / 2.0;
+
+    }
 
     void Point::scale(double factor){
         _xyz[0] *= factor;
         _xyz[1] *= factor;
         _xyz[2] *= factor;
     }
-    void Point::scale_up(){
-        _xyz[0]*=GLOBALS::SCALE;
-        _xyz[1]*=GLOBALS::SCALE;
-        _xyz[2]*=GLOBALS::SCALE;
+
+    Point Point::scaled(double factor){
+        return Point(
+        _xyz[0]+factor,
+        _xyz[1]+factor,
+        _xyz[2]+factor
+        );
     }
-    void Point::scale_down(){
-        _xyz[0]/=GLOBALS::SCALE;
-        _xyz[1]/=GLOBALS::SCALE;
-        _xyz[2]/=GLOBALS::SCALE;
+
+    void Point::translate(Vector& translation_vector){
+        _xyz[0]+=translation_vector[0];
+        _xyz[1]+=translation_vector[1];
+        _xyz[2]+=translation_vector[2];
     }
+
+    Point Point::translated(Vector& translation_vector){
+        return Point(
+        _xyz[0]+translation_vector[0],
+        _xyz[1]+translation_vector[1],
+        _xyz[2]+translation_vector[2]
+        );
+
+    }
+
+
 } // namespace geo

@@ -1,7 +1,8 @@
+#pragma once
 #include "globals.hpp"
 #include <cmath>
-
-#pragma once
+#include <vector>
+#include <vector.hpp> // Never include point into vector, it will cause circular dependency
 
 namespace geo
 {
@@ -24,6 +25,12 @@ namespace geo
          * @param z The z-coordinate.
          */
         Point(double x, double y, double z=0);
+
+        /**
+         * @brief Convert a point to vector.
+         * @return A vector with point coordinates.
+         */
+        Vector Point::to_vector();
 
         /**
          * @brief Subscript operator for non-const access.
@@ -61,9 +68,9 @@ namespace geo
         Point& operator+=(const Point &other);
 
         /**
-         * @brief Subtract another Point from this Point.
-         * @param other The Point to subtract.
-         * @return A reference to the Point after subtraction.
+         * @brief Subtract another Vector from this Vector.
+         * @param other The Vector to subtract.
+         * @return A reference to the Vector after subtraction.
          */
         Point& operator-=(const Point &other);
 
@@ -82,18 +89,18 @@ namespace geo
         Point operator/(double factor) const;
 
         /**
-         * @brief Add another Point to this Point.
-         * @param other The Point to add.
+         * @brief Add another Vector to this Point.
+         * @param other The Vector to add.
          * @return A new Point that is the result of the addition.
          */
-        Point operator+(const Point &other) const;
+        Point operator+(const Vector &other) const;
 
         /**
-         * @brief Subtract another Point from this Point.
-         * @param other The Point to subtract.
+         * @brief Subtract Vector from this Point.
+         * @param other The Vector to subtract.
          * @return A new Point that is the result of the subtraction.
          */
-        Point operator-(const Point &other) const;
+        Vector operator-(const Vector &other) const;
 
         /**
          * @brief Check if this Point is equal to another Point.
@@ -108,12 +115,6 @@ namespace geo
          * @return True if the Points are not equal, false otherwise.
          */
         bool operator!=(const Point &other) const;
-
-        /**
-         * @brief Negate the Point.
-         * @return A new Point that is the result of the negation.
-         */
-        Point operator-() const;
 
         /**
          * @brief Retrieves the x-coordinate.
@@ -132,12 +133,6 @@ namespace geo
          * @return The z-coordinate.
          */
         double z() const;
-
-        /**
-         * @brief Scales the point by a given factor.
-         * @param factor The factor to scale by.
-         */
-        void scale(double factor);
 
         /**
          * @brief Check if the three points of triangle are in a counterclockwise order.
@@ -163,14 +158,34 @@ namespace geo
         double distance(Point &p);
 
         /**
-         * @brief Scales the point up by a factor of global SCALE.
+         * @brief Computes the area of a polygon defined by a vector of points.
+         * @param points The vector of points defining the polygon.
+         * @return The area of the polygon.
          */
-        void scale_up();
+        static double Point::area(std::vector<Point> &polygon);
 
         /**
-         * @brief Scales the point down by a factor of global SCALE.
+         * @brief Scales the point by a given factor.
+         * @param factor The factor to scale by.
          */
-        void scale_down();
+        void scale(double factor);
+
+        /**
+         * @brief Scales the point by a given factor.
+         * @param factor The factor to scale by.
+         */
+        Point scaled(double factor);
+
+        /**
+         * @brief Move point by summing vector and point coordinates 
+         */
+        void Point::translate(Vector& translation_vector);
+
+        /**
+         * @brief Move point by summing vector and point coordinates 
+         */
+        Point Point::translated(Vector& translation_vector);
+
 
     private:
         /**

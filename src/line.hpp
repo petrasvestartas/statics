@@ -25,6 +25,17 @@ namespace geo
         Line(const Point& p1, const Point& p2);
 
         /**
+         * @brief Constructor that initializes the line with the given point coordinates.
+         * @param x0 first point x coordinate.
+         * @param y0 first point y coordinate.
+         * @param z0 first point z coordinate.
+         * @param x1 first point x coordinate.
+         * @param y1 first point y coordinate.
+         * @param z1 first point z coordinate.
+         */
+        Line(const double& x0, const double& y0, const double& z0, const double& x1, const double& y1, const double& z1);
+
+        /**
          * @brief Subscript operator for non-const access.
          * @param index The index of the point to access (0 for the first point, 1 for the second point).
          * @return A reference to the point at the given index.
@@ -64,14 +75,26 @@ namespace geo
         Point point_at(const double& t) const;
 
         /**
-         * @brief Scales the line up by a factor of global SCALE.
+         * @brief Scales the line by a given factor.
+         * @param factor The factor to scale by.
          */
-        void scale_up();
+        void scale(double factor);
 
         /**
-         * @brief Scales the line down by a factor of global SCALE.
+         * @brief Scales the line by a given factor.
+         * @param factor The factor to scale by.
          */
-        void scale_down();
+        Line scaled(double factor);
+
+        /**
+         * @brief Move line by summing vector and point coordinates 
+         */
+        void Line::translate(Vector& translation_vector);
+
+        /**
+         * @brief Move line by summing vector and point coordinates 
+         */
+        Line Line::translated(Vector& translation_vector);
 
     private:
         /**
