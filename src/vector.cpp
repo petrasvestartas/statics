@@ -52,6 +52,11 @@ namespace geo
         return *this;
     }
 
+    // Friend non-member operator* overload to handle double * Vector
+    Vector operator*(double factor, const Vector& v) {
+        return v * factor; // Reuse the member operator* overload
+    }
+
     Vector& Vector::operator/=(double factor) {
         for (size_t i = 0; i < 3; ++i)
             _xyz[i] /= factor;
@@ -230,26 +235,23 @@ namespace geo
     }
 
     double Vector::angle(Vector &other) {
-        double dot_product = this->dot(other);
-        double magnitudes = this->length() * other.length();
 
-        // Avoid division by zero
-        if (magnitudes == 0) {
-            return 0.0;
-        }
+        double lenA = this->length();
+        double lenB = other.length();
+        Vector sum =  lenB * *this + lenA * other;
+        Vector diff = lenB * *this - lenA * other;
+        double angle =  2.0 * atan(diff.length() / sum.length());
 
-        double cos_angle = dot_product / magnitudes;
+        // Determine the sign of the angle using the z-component of the cross product
+        Vector crossProduct = this->cross(other);
+        if (crossProduct._xyz[2] < 0)
+            angle = -angle;
 
-        // Clamp the value to the range [-1, 1] to avoid errors with acos
-        cos_angle = std::max(-1.0, std::min(1.0, cos_angle));
+        return angle;
+    }
 
-        // Compute the angle in radians
-        double angle_rad = std::acos(cos_angle);
-
-        // Convert to degrees
-        double angle_deg = angle_rad * (180.0 / GLOBALS::M_PI);
-
-        return angle_deg;
+    double Vector::angle_degrees(Vector &other) {
+        return this->angle(other) * (180.0 / GLOBALS::M_PI);
     }
 
     Vector Vector::get_leveled_vector(double &vertical_height)
@@ -259,7 +261,7 @@ namespace geo
 
         if (copy.unitize())
         {
-            double angle = copy.angle(Vector(0, 0, 1));
+            double angle = copy.angle_degrees(Vector(0, 0, 1));
             double inclined_offset_by_vertical_distance = vertical_height / std::cos(angle);
             copy *= inclined_offset_by_vertical_distance;
         }

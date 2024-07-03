@@ -137,10 +137,13 @@ void cross(){
 
 void angle(){
 
-    geo::Vector v1(1, 0, 0);
+    geo::Vector v1(1, 1, 0);
     geo::Vector v2(0, 1, 0);
-    double angle = v1.angle(v2);
-    my_assert(angle == 90);
+    double angle = v1.angle_degrees(v2);
+    my_assert(angle == 45);
+    v1 = geo::Vector(-1, 1, 0);
+    angle = v1.angle_degrees(v2);
+    my_assert(angle == -45);
 
 }
 

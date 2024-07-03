@@ -88,6 +88,13 @@ namespace geo
         Vector& operator*=(double factor);
 
         /**
+         * @brief Friend non-member operator* overload to handle double * Vector.
+         * @param factor The factor to scale the vector by.
+         * @param v The vector to scale.
+         */
+        friend Vector operator*(double factor, const Vector& v);
+
+        /**
          * @brief Scale the vector by a factor (division).
          * @param factor The factor to scale the vector by.
          * @return A reference to the vector after scaling.
@@ -229,9 +236,15 @@ namespace geo
 
         /**
          * @brief Calculate an angle between two vectors.
-         * @return Angle.
+         * @return Angle in radians.
          */
         double Vector::angle(Vector &other);
+
+        /**
+         * @brief Calculate an angle between two vectors.
+         * @return Angle in degrees.
+         */
+        double Vector::angle_degrees(Vector &other);
 
         /**
          * Scale the vector to the given vertical height
