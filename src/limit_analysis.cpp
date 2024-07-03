@@ -27,12 +27,18 @@ namespace geo
 
         // Calculate weight as negative vertical vector
         W = Vector(0,0,0);
+        c = Point(0,0,0);
         for (auto& polygon : polygons) {
-            W[1] -= Point::area(polygon)*density;
+            W[1] -= Point::area(polygon)*density*9.81;
+            Point centroid = Point::centroid_quad(polygon);
+            c = c + centroid.to_vector();
         }
+        c /= polygons.size();
+        
+
 
         // Set one horizontal force and eccentricities
-        Hr = Vector(horizontal_reaction, 0, 0);
+        Hl = Vector(horizontal_reaction, 0, 0);
         Vector el_v = offset0.front()-offset1.front().to_vector();
         Vector er_v = offset0.back()-offset1.back().to_vector();
         el_v.unitize();
@@ -54,18 +60,37 @@ namespace geo
 
         el.translate(translation_vector);
         er.translate(translation_vector);
+        c.translate(translation_vector);
 
         // Print location to verify the points of the arc
-        for (auto& polygon : polygons) {
-            for (auto& point : polygon) {
-                std::cout << point[0] << " " << point[1] << " " << point[2] << std::endl;
-            }
-        }
+        // for (auto& polygon : polygons) {
+        //     for (auto& point : polygon) {
+        //         std::cout << point[0] << " " << point[1] << " " << point[2] << std::endl;
+        //     }
+        // }
 
-        // Apply Horizontal, Vertical and Moment equilibrium to find the right reaction force
-        // Vl + Vr = W
-        // Hr = Hl
-        // W[0] * centroid[0] = Vl * eccentricities[0][0][1] + Vr * eccentricities[1][1][0]
+
+
+        // Equilibrium equations: horizontal, hertical and moment equilibrium to find the vertical right reaction force
+        // Vl + Vr = W -> Vl and Vr are unknown
+        // Hr = Hl -> Use the same for simplicity
+        // Hl[0] * el[0][1] + W[1] * c[0] = Vl[1]*el[1][0]+Hr[0]*er[1][1]+Vr[1]*er[1][0]
+        // Consider Hl = Hr and Hr = 0 and Vr = 0, derive Vl_y
+        //  Hl[0] * el[1][1] + W[1] * c[0] = Vl[1]*el[1][0]
+        //  Vl[1] = Hl[0] * el[1][1] + W[1] * c[0] / el[1][0]
+
+        //CONSIDER SIGNS
+        Vl[1] = Hl[0] * el[0][1] + W[1] * c[0] / el[1][0];
+        std::cout << "Hl[0]: " << Hl[0] << " el[1][1]: " << el[1][1] << " W[1]: " << W[1] << " c[0]: " << c[0] << " el[1][0]: " << el[1][0] << std::endl;
+
+
+        //  // W[1] * c[0] = Vl * el[1][0] + Vr * er[1][0] -> will take Vr eccentricity as 0 to have one uknonw
+        // double Vl_y = W[1] * el[1][0] / eccentricity0;
+        // std::cout << "W[1]: " << W[1] << " c[0]: " << c[0] << " el[1][0]: " << el[1][0] << std::endl;
+        std::cout << "Vl_y: " << Vl[1] << std::endl; //should be around -2370
+
+        // Verify if this correct by parabola
+
         
     }
 

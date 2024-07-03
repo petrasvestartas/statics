@@ -245,5 +245,45 @@ namespace geo
 
     }
 
+    Point Point::centroid_quad(const std::vector<Point>& vertices) {
+        if (vertices.size() != 4) {
+            throw std::invalid_argument("Polygon must have exactly 4 vertices.");
+        }
+
+        double totalArea = 0;
+        Point centroidSum(0, 0, 0);
+
+        for (int i = 0; i < 4; ++i) {
+            const Point& p0 = vertices[i];
+            const Point& p1 = vertices[(i + 1) % 4];
+            const Point& p2 = vertices[(i + 2) % 4];
+
+            // Triangle area using the shoelace formula
+            double triangleArea = std::abs(p0[0] * (p1[1] - p2[1]) + p1[0] * (p2[1] - p0[1]) + p2[0] * (p0[0] - p1[0])) / 2.0;
+            totalArea += triangleArea;
+
+            // Triangle centroid
+            Point triangleCentroid((p0[0] + p1[0] + p2[0]) / 3.0, (p0[1] + p1[1] + p2[1]) / 3.0, (p0[2] + p1[2] + p2[2]) / 3.0);
+            centroidSum += triangleCentroid * triangleArea;
+        }
+
+        return centroidSum / totalArea;
+    }
+
+    // Function to calculate area of the quadrilateral using Shoelace formula
+    double Point::area_quad(const std::vector<Point>& vertices) {
+        if (vertices.size() != 4) {
+            throw std::invalid_argument("Polygon must have exactly 4 vertices.");
+        }
+
+        double area = 0.0;
+        for (size_t i = 0; i < 4; ++i) {
+            const Point& current = vertices[i];
+            const Point& next = vertices[(i + 1) % 4];
+            area += current[0] * next[1] - next[0] * current[1];
+        }
+        return std::abs(area) / 2.0;
+    }
+
 
 } // namespace geo

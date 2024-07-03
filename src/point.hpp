@@ -186,6 +186,20 @@ namespace geo
          */
         Point Point::translated(Vector& translation_vector);
 
+        /**
+         * @brief Computes the centroid of a quad.
+         * @param vertices The four points.
+         * @return The centroid of the quad.
+         */
+        static Point Point::centroid_quad(const std::vector<Point>& vertices);
+
+        /**
+         * @brief Computes the area of a quad.
+         * @param vertices The four points.
+         * @return The area of the quad.
+         */
+        static double Point::area_quad(const std::vector<Point>& vertices);
+
 
     private:
         /**

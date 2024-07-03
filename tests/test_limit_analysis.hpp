@@ -7,10 +7,10 @@
 
 void test_limit_analysis() {
 
-    geo::Shell shell(std::array<geo::Point, 3>{geo::Point{-4, 0, 0}, geo::Point{0, 0.4, 0}, geo::Point{4, 0, 0}}, 0.12, 480, 1000, 0.04, 0.04, 10);
+    // horizontal force - 16.4 18.4, 26.2 - 29.3 kN
+    geo::Shell shell(std::array<geo::Point, 3>{geo::Point{-4, 0, 0}, geo::Point{0, 0.4, 0}, geo::Point{4, 0, 0}}, 0.12, 480, 9145, -0.03, -0.03, 10);
 
     // my_assert(std::abs(arc.radius - 20.2) < 0.0001);
-
 
 }
 
