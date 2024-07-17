@@ -13,7 +13,7 @@ namespace geo
             static constexpr double EPSILON = 2.2204460492503131e-16;
             static constexpr double SQRT_EPSILON = 1.490116119385000000e-8;
             
-            static constexpr double M_PI = 3.14159265358979323846;
+            static constexpr double PI = 3.14159265358979323846;
             static constexpr double TO_RAD =   0.01745329251994329576;
             static double SCALE;
             static double ANGLE;

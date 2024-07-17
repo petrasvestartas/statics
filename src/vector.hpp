@@ -161,7 +161,7 @@ namespace geo
          * @brief Reverse the vector.
          * @return A new vector that is the result of the reversal.
          */
-        void Vector::reverse();
+        void reverse();
 
         /**
          * @brief Get a length of a vector.
@@ -238,13 +238,13 @@ namespace geo
          * @brief Calculate an angle between two vectors.
          * @return Angle in radians.
          */
-        double Vector::angle(Vector &other);
+        double angle(Vector &other);
 
         /**
          * @brief Calculate an angle between two vectors.
          * @return Angle in degrees.
          */
-        double Vector::angle_degrees(Vector &other);
+        double angle_degrees(Vector &other);
 
         /**
          * Scale the vector to the given vertical height
@@ -327,6 +327,29 @@ namespace geo
         static double sine_law_length(double& triangle_edge_length_a, double& angle_in_degrees_in_front_of_a, double& angle_in_degrees_in_front_of_b);
 
         /**
+         * Compute the angle between two vectors.
+         * 
+         * Fy   F
+         * |   /
+         * |  /
+         * | / θ
+         * * ___ Fx
+         * 
+         * @param [in] v1 first vector
+         * @param [in] v2 second vector
+         * @return the angle between two vectors in degrees
+         */
+        static double angle_between_vector_xy_components_degrees(Vector &vector);
+
+        /**
+         * @brief Algebraic sum of vectors, by summing up the components.
+         * 
+         * @param [in] vectors vector list
+         * @return the sum of vectors
+         */
+        static Vector sum_of_vectors(std::vector<Vector> &vectors);
+
+        /**
          * @brief Scales the Vector by a given factor.
          * @param factor The factor to scale by.
          */
@@ -346,7 +369,7 @@ namespace geo
          * @brief Unitize a vector and scale it to a given length.
          * @param factor The factor to rescale by.
          */
-        void Vector::rescale(double factor);
+        void rescale(double factor);
 
         // /**
         //  * @brief Transform the vector by a given matrix.

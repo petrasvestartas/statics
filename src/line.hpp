@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Point.hpp"
-#include "Vector.hpp"
+#include "point.hpp"
+#include "vector.hpp"
 
 namespace geo
 {
@@ -89,12 +89,12 @@ namespace geo
         /**
          * @brief Move line by summing vector and point coordinates 
          */
-        void Line::translate(Vector& translation_vector);
+        void translate(Vector& translation_vector);
 
         /**
          * @brief Move line by summing vector and point coordinates 
          */
-        Line Line::translated(Vector& translation_vector);
+        Line translated(Vector& translation_vector);
 
     private:
         /**

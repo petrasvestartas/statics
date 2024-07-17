@@ -1,4 +1,4 @@
-#include "Line.hpp"
+#include "line.hpp"
 #include <cmath> // for std::sqrt
 
 namespace geo

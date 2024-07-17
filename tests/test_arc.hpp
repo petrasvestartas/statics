@@ -1,5 +1,5 @@
 #pragma once
-#include "./src/core.hpp" // Include the header of the class you're testing
+#include "core.hpp" // Include the header of the class you're testing
 #include "point_and_vector.hpp"
 #include "arc.hpp"
 #include "offset_2d.hpp"

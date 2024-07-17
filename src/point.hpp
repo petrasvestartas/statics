@@ -30,7 +30,7 @@ namespace geo
          * @brief Convert a point to vector.
          * @return A vector with point coordinates.
          */
-        Vector Point::to_vector();
+        Vector to_vector();
 
         /**
          * @brief Subscript operator for non-const access.
@@ -141,7 +141,7 @@ namespace geo
          * @param c The third point.
          * @return A positive value if the points are in counterclockwise order, a negative value if they are in clockwise order, and 0 if they are collinear.
          */
-        static float Point::ccw(Point &a, Point &b, Point &c);
+        static float ccw(Point &a, Point &b, Point &c);
 
         /**
          * @brief Computes the midpoint between two points.
@@ -162,7 +162,7 @@ namespace geo
          * @param points The vector of points defining the polygon.
          * @return The area of the polygon.
          */
-        static double Point::area(std::vector<Point> &polygon);
+        static double area(std::vector<Point> &polygon);
 
         /**
          * @brief Scales the point by a given factor.
@@ -179,26 +179,26 @@ namespace geo
         /**
          * @brief Move point by summing vector and point coordinates 
          */
-        void Point::translate(Vector& translation_vector);
+        void translate(Vector& translation_vector);
 
         /**
          * @brief Move point by summing vector and point coordinates 
          */
-        Point Point::translated(Vector& translation_vector);
+        Point translated(Vector& translation_vector);
 
         /**
          * @brief Computes the centroid of a quad.
          * @param vertices The four points.
          * @return The centroid of the quad.
          */
-        static Point Point::centroid_quad(const std::vector<Point>& vertices);
+        static Point centroid_quad(const std::vector<Point>& vertices);
 
         /**
          * @brief Computes the area of a quad.
          * @param vertices The four points.
          * @return The area of the quad.
          */
-        static double Point::area_quad(const std::vector<Point>& vertices);
+        static double area_quad(const std::vector<Point>& vertices);
 
 
     private:

@@ -76,6 +76,14 @@
         "xutility": "cpp",
         "deque": "cpp",
         "queue": "cpp",
-        "codecvt": "cpp"
+        "codecvt": "cpp",
+        "*.tcc": "cpp",
+        "cstdarg": "cpp",
+        "cwctype": "cpp",
+        "memory_resource": "cpp",
+        "random": "cpp",
+        "string_view": "cpp",
+        "numbers": "cpp",
+        "variant": "cpp"
     }
 }

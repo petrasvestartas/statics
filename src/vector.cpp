@@ -1,4 +1,4 @@
-#include "Vector.hpp"
+#include "vector.hpp"
 
 namespace geo
 {
@@ -144,7 +144,7 @@ namespace geo
             // For small denormalized doubles (positive but smaller
             // than DOUBLE_MIN), some compilers/FPUs set 1.0/x to +INF.
             // Without the DOUBLE_MIN test we end up with
-            // microscopic vectors that have infinte length!
+            // microscopic vectors that have infinite length!
             if (x > GLOBALS::DOUBLE_MIN)
             {
                 y /= x;
@@ -198,7 +198,7 @@ namespace geo
         {
             const double cos_angle = (_xyz[0] * v[0] + _xyz[1] * v[1] + _xyz[2] * v[2]) / ll;
 
-            const double angle_in_radians = GLOBALS::ANGLE * (GLOBALS::M_PI / 180.0); // convert angle from degrees to radians
+            const double angle_in_radians = GLOBALS::ANGLE * (GLOBALS::PI / 180.0); // convert angle from degrees to radians
             const double cos_tol = cos(angle_in_radians);
             if (cos_angle >= cos_tol)
                 result = 1; // "Parallel";
@@ -251,7 +251,7 @@ namespace geo
     }
 
     double Vector::angle_degrees(Vector &other) {
-        return this->angle(other) * (180.0 / GLOBALS::M_PI);
+        return this->angle(other) * (180.0 / GLOBALS::PI);
     }
 
     Vector Vector::get_leveled_vector(double &vertical_height)
@@ -261,7 +261,8 @@ namespace geo
 
         if (copy.unitize())
         {
-            double angle = copy.angle_degrees(Vector(0, 0, 1));
+            Vector referenceVector(0, 0, 1);
+            double angle = copy.angle_degrees(referenceVector);
             double inclined_offset_by_vertical_distance = vertical_height / std::cos(angle);
             copy *= inclined_offset_by_vertical_distance;
         }
@@ -270,19 +271,35 @@ namespace geo
     }
 
     double Vector::cosine_law(double& triangle_edge_length_a, double& triangle_edge_length_b, double& angle_in_degrees_between_edges){
-        double angle_in_radians_between_edges = angle_in_degrees_between_edges * GLOBALS::M_PI / 180.0;
-        return sqrt(pow(triangle_edge_length_a, 2) + pow(triangle_edge_length_b, 2) - 2*triangle_edge_length_a*triangle_edge_length_b*cos(angle_in_radians_between_edges));
+        double angle_in_radians_between_edges = angle_in_degrees_between_edges * GLOBALS::PI / 180.0;
+        double result = sqrt(pow(triangle_edge_length_a, 2) + pow(triangle_edge_length_b, 2) - 2*triangle_edge_length_a*triangle_edge_length_b*cos(angle_in_radians_between_edges));
+        return result;
     }
 
     double Vector::sine_law_angle(double& triangle_edge_length_a, double& angle_in_degrees_in_front_of_a, double& triangle_edge_length_b){
-        double angle_in_radians_in_front_of_a = angle_in_degrees_in_front_of_a * GLOBALS::M_PI / 180.0;
-        return asin( (triangle_edge_length_b * sin(angle_in_radians_in_front_of_a)) / triangle_edge_length_a ) * 180.0 / GLOBALS::M_PI;
+        double angle_in_radians_in_front_of_a = angle_in_degrees_in_front_of_a * GLOBALS::PI / 180.0;
+        return asin( (triangle_edge_length_b * sin(angle_in_radians_in_front_of_a)) / triangle_edge_length_a ) * 180.0 / GLOBALS::PI;
     }
 
     double Vector::sine_law_length(double& triangle_edge_length_a, double& angle_in_degrees_in_front_of_a, double& angle_in_degrees_in_front_of_b){
-        double angle_in_radians_in_front_of_a = angle_in_degrees_in_front_of_a * GLOBALS::M_PI / 180.0;
-        double angle_in_radians_in_front_of_b = angle_in_degrees_in_front_of_b * GLOBALS::M_PI / 180.0;
+        double angle_in_radians_in_front_of_a = angle_in_degrees_in_front_of_a * GLOBALS::PI / 180.0;
+        double angle_in_radians_in_front_of_b = angle_in_degrees_in_front_of_b * GLOBALS::PI / 180.0;
         return (triangle_edge_length_a * sin(angle_in_radians_in_front_of_b))/sin(angle_in_radians_in_front_of_a);
+    }
+
+    double Vector::angle_between_vector_xy_components_degrees(Vector &vector){
+        double angle_between_inclined_vector_and_horizontal_component = atan(vector[1]/vector[0]);
+        return angle_between_inclined_vector_and_horizontal_component * 180.0 / GLOBALS::PI;
+    }
+
+    Vector Vector::sum_of_vectors(std::vector<Vector> &vectors){
+        double x = 0, y = 0, z = 0;
+        for (Vector vector : vectors){
+            x += vector[0];
+            y += vector[1];
+            z += vector[2];
+        }
+        return Vector(x, y, z);
     }
 
     void Vector::scale(double factor) {

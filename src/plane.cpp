@@ -1,4 +1,4 @@
-#include "Plane.hpp"
+#include "plane.hpp"
 #include <cmath>
 
 namespace geo

@@ -1,8 +1,9 @@
 #pragma once
-#include "./src/core.hpp" // Include the header of the class you're testing
+#include "core.hpp" // Include the header of the class you're testing
 #include "test_methods.hpp"
 #include <iomanip>
 #include <cmath>
+#include "globals.hpp"
 
 void default_constructor() {
     geo::Vector v;
@@ -119,7 +120,7 @@ void dot(){
     if (magnitudes > 0.0) {
         double cos_angle = dot_product / magnitudes;
         double angle = acos(cos_angle); // angle in radians
-        double angle_degrees = angle * (180.0 / geo::GLOBALS::M_PI); // convert to degrees
+        double angle_degrees = angle * (180.0 / geo::GLOBALS::PI); // convert to degrees
         my_assert(angle_degrees == 90); // orthogonal
     } else {
         std::cout << "One or both vectors are zero vectors." << std::endl;
@@ -196,6 +197,20 @@ void sine_law_length(){
 
 }
 
+void angle_between_vector_xy_components(){
+    geo::Vector v(sqrt(3), 1, 0);
+    double angle = geo::Vector::angle_between_vector_xy_components_degrees(v);
+    my_assert(round(angle*100)/100 == 30);
+    v = geo::Vector(1, sqrt(3), 0);
+    angle = geo::Vector::angle_between_vector_xy_components_degrees(v);
+    my_assert(round(angle*100)/100 == 60);
+}
+
+void sum_of_vectors(){
+    std::vector<geo::Vector> vectors = {geo::Vector(1, 1, 1), geo::Vector(2, 2, 2), geo::Vector(3, 3, 3)};
+    geo::Vector sum = geo::Vector::sum_of_vectors(vectors);
+    my_assert(sum[0] == 6 && sum[1] == 6 && sum[2] == 6);
+}
 
 void scale(){
 
@@ -239,6 +254,8 @@ int test_vector_main() {
     cosine_law();
     sine_law_angle();
     sine_law_length();
+    angle_between_vector_xy_components();
+    sum_of_vectors();
     scale();
     scale_up();
     scale_down();
