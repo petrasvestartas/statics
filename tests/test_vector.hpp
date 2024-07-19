@@ -212,6 +212,16 @@ void sum_of_vectors(){
     my_assert(sum[0] == 6 && sum[1] == 6 && sum[2] == 6);
 }
 
+void coordinate_direction_angles(){
+    geo::Vector v(35.4, 35.4, 86.6);
+    std::array<double, 3> alpha_beta_gamma = geo::Vector::coordinate_direction_3angles(v, true);
+    my_assert(abs(alpha_beta_gamma[0]-69.274204) < geo::GLOBALS::MICRO && abs(alpha_beta_gamma[1]-69.274204)<geo::GLOBALS::MICRO  && abs(alpha_beta_gamma[2]-30.032058) < geo::GLOBALS::MICRO);
+    
+    v = geo::Vector(1, 1, sqrt(2));
+    std::array<double, 2> phi_theta = geo::Vector::coordinate_direction_2angles(v, true);
+    my_assert(abs(phi_theta[0]-45) < geo::GLOBALS::MICRO && abs(phi_theta[1]-45)<geo::GLOBALS::MICRO);
+}
+
 void scale(){
 
     geo::Vector v(1, 1, 1);
@@ -256,6 +266,7 @@ int test_vector_main() {
     sine_law_length();
     angle_between_vector_xy_components();
     sum_of_vectors();
+    coordinate_direction_angles();
     scale();
     scale_up();
     scale_down();

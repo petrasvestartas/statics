@@ -183,10 +183,10 @@ namespace geo
     }
 
     Vector Vector::component(Vector& other) {
-        double cosa = this->dot(other);
+        double cos_angle = this->dot(other);
         Vector component = Vector(other._xyz[0], other._xyz[1], other._xyz[2]);
         double L = component.length();
-        component.scale(cosa / L);
+        component.scale(cos_angle / L);
         return component;
     }
 
@@ -300,6 +300,57 @@ namespace geo
             z += vector[2];
         }
         return Vector(x, y, z);
+    }
+
+    std::array<double, 3> Vector::coordinate_direction_3angles(Vector &v, bool degrees){
+        double x = v[0];
+        double y = v[1];
+        double z = v[2];
+        double r = sqrt(x*x + y*y + z*z);
+
+        // unit vector
+        // u = F/|F| = F_x/|F| + F_y/|F| + F_z/|F|
+        double x_proportion = x/r;
+        double y_proportion = y/r;
+        double z_proportion = z/r;
+
+        // angles
+        double alpha = acos(x_proportion);
+        double beta = acos(y_proportion);
+        double gamma = acos(z_proportion);
+
+        if (degrees){
+            alpha = alpha * 180.0 / GLOBALS::PI;
+            beta = beta * 180.0 / GLOBALS::PI;
+            gamma = gamma * 180.0 / GLOBALS::PI;
+        }
+
+        return std::array<double, 3>{alpha, beta, gamma};
+
+
+    }
+
+    std::array<double, 2> Vector::coordinate_direction_2angles(Vector &v, bool degrees){
+        double x = v[0];
+        double y = v[1];
+        double z = v[2];
+        double r = sqrt(x*x + y*y + z*z);
+
+        // unit vector
+        // u = |v|*sin(phi)*cos(theta) i + |v|*sin(phi)*sin(theta) j + |v|*cos(phi) k
+        // from the unit vector, lets get angle phi and theta
+
+        double phi = acos(z/r);
+        double theta = atan2(y, x);
+
+
+        if (degrees){
+            phi = phi * 180.0 / GLOBALS::PI;
+            theta = theta * 180.0 / GLOBALS::PI;
+        }
+
+        return std::array<double, 2>{phi, theta};
+        
     }
 
     void Vector::scale(double factor) {

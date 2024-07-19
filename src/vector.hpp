@@ -190,7 +190,7 @@ namespace geo
         Vector component(Vector& other);
 
         /**
-         * Check if two vectors are parallel or anti-parallel or not-paralel
+         * Check if two vectors are parallel or anti-parallel or not-parallel
          * tolerance geo::GLOBALS::ANGLE in degrees
          *
          * @param [in] v vector
@@ -348,6 +348,23 @@ namespace geo
          * @return the sum of vectors
          */
         static Vector sum_of_vectors(std::vector<Vector> &vectors);
+
+
+        /**
+         * @brief Calculate the angle between the vector and the coordinate axes.
+         * 
+         * @param [in] v vector
+         * @return the angle between the vector and the coordinate axes in degrees
+         */
+        static std::array<double, 3> coordinate_direction_3angles(Vector &v, bool degrees = false);
+
+        /**
+         * @brief Calculate the horizontal and vertical angle between the vector and the coordinate axes.
+         * 
+         * @param [in] v vector
+         * @return the angle between the vector and the coordinate axes in degrees
+         */
+        static std::array<double, 2> coordinate_direction_2angles(Vector &v, bool degrees = false);
 
         /**
          * @brief Scales the Vector by a given factor.
