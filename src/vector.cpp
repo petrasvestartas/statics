@@ -182,12 +182,52 @@ namespace geo
         return unitized_vector;
     }
 
-    Vector Vector::component(Vector& other) {
-        double cos_angle = this->dot(other);
-        Vector component = Vector(other._xyz[0], other._xyz[1], other._xyz[2]);
-        double L = component.length();
-        component.scale(cos_angle / L);
-        return component;
+    Vector Vector::projection(
+        Vector& projection_vector,
+        double tolerance,
+        double* out_projected_vector_length, 
+        Vector* out_perpendicular_projected_vector, 
+        double* out_perpendicular_projected_vector_length){
+
+        // unitize vector_to_project_on
+        double projection_vector_length = projection_vector.length();
+        Vector projection_vector_unit = Vector(
+            projection_vector[0]/projection_vector_length, 
+            projection_vector[1]/projection_vector_length, 
+            projection_vector[2]/projection_vector_length);
+
+        // Before unitizing, check if the length is below a tolerance value
+        if (projection_vector_length < tolerance) {
+            // Handle the case where the projection_vector_length is too small
+            // This could involve setting default values or returning an error
+            if (out_projected_vector_length) *out_projected_vector_length = 0;
+            if (out_perpendicular_projected_vector) *out_perpendicular_projected_vector = Vector(0, 0, 0);
+            if (out_perpendicular_projected_vector_length) *out_perpendicular_projected_vector_length = 0;
+            return Vector(0, 0, 0); // Return a zero vector or handle as appropriate
+        }
+
+        // get the scale factor of the projection vector by dot product
+        double projected_vector_length = this->dot(projection_vector_unit);
+        if (out_projected_vector_length) {
+            *out_projected_vector_length = projected_vector_length;
+        }
+
+        // get the projection vector
+        Vector out_projection_vector = projection_vector_unit * projected_vector_length;
+
+        // get the perpendicular vector
+        if (out_perpendicular_projected_vector) {
+            *out_perpendicular_projected_vector = *this - out_projection_vector;
+            if (out_perpendicular_projected_vector_length) {
+                *out_perpendicular_projected_vector_length = out_perpendicular_projected_vector->length();
+            }
+        } else if (out_perpendicular_projected_vector_length) {
+            // Calculate length only if needed and perpendicular vector is not requested
+            Vector temp_perpendicular_vector = *this - out_projection_vector;
+            *out_perpendicular_projected_vector_length = temp_perpendicular_vector.length();
+        }
+
+        return out_projection_vector;
     }
 
     int Vector::is_parallel_to(Vector &v) {

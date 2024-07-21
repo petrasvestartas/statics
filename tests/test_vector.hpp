@@ -80,17 +80,29 @@ void unitize(){
 
 }
 
-void component(){
+void projection(){
     geo::Vector v(1, 1, 1);
     geo::Vector x_axis(1, 0, 0);
     geo::Vector y_axis(0, 1, 0);
     geo::Vector z_axis(0, 0, 1);
-    geo::Vector component = v.component(x_axis);
-    my_assert(component[0] == 1 && component[1] == 0 && component[2] == 0);
-    component = v.component(y_axis);
-    my_assert(component[0] == 0 && component[1] == 1 && component[2] == 0);
-    component = v.component(z_axis);
-    my_assert(component[0] == 0 && component[1] == 0 && component[2] == 1);
+    double projection_length;
+    geo::Vector projection_perpendicular_vector;
+    double projection_perpendicular_vector_length;
+    geo::Vector projection = v.projection(x_axis);
+    my_assert(projection[0] == 1 && projection[1] == 0 && projection[2] == 0);
+    projection = v.projection(y_axis);
+    my_assert(projection[0] == 0 && projection[1] == 1 && projection[2] == 0);
+    projection = v.projection(z_axis);
+    my_assert(projection[0] == 0 && projection[1] == 0 && projection[2] == 1);
+
+    v = geo::Vector(0, 300, 0);
+    geo::Vector projection_vector = geo::Vector(2, 6, 3);
+    projection = v.projection(projection_vector, geo::GLOBALS::ZERO_TOLERANCE, &projection_length, &projection_perpendicular_vector, &projection_perpendicular_vector_length);
+    my_assert(projection[0]-73.4694 < geo::GLOBALS::MILLI && projection[1]-220.408 < geo::GLOBALS::MILLI && projection[2]-110.204 < geo::GLOBALS::MILLI);
+    my_assert(projection_length-257.142857 < geo::GLOBALS::MILLI);
+    my_assert(projection_perpendicular_vector[0]-(-73.4694) < geo::GLOBALS::MILLI && projection_perpendicular_vector[1]-79.5918 < geo::GLOBALS::MILLI && projection_perpendicular_vector[2]-(-110.204) < geo::GLOBALS::MILLI);
+    my_assert(projection_perpendicular_vector_length-154.523626 < geo::GLOBALS::MILLI);
+
 
 }
 
@@ -255,7 +267,7 @@ int test_vector_main() {
     reverse();
     length();
     unitize();
-    component();
+    projection();
     is_parallel_to();
     dot();
     cross();

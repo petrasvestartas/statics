@@ -182,12 +182,20 @@ namespace geo
         Vector unitized();
 
         /**
-         * @brief Compute the component of this vector in the direction of another vector.
+         * @brief Project a current vector to the projection_vector.
          * 
-         * @param other The other vector.
-         * @return Vector The component of this vector in the direction of the other vector.
+         * @param [in] projection_vector vector to project to
+         * @param [out] out_projected_vector_length length of the projected vector
+         * @param [out] out_perpendicular_projected_vector perpendicular projected vector
+         * @param [out] out_perpendicular_projected_vector_length length of the perpendicular projected vector
+         * @return projected vector
          */
-        Vector component(Vector& other);
+        Vector projection(
+            Vector& projection_vector, 
+            double tolerance = geo::GLOBALS::ZERO_TOLERANCE,
+            double* out_projected_vector_length = nullptr, 
+            Vector* out_perpendicular_projected_vector = nullptr, 
+            double* out_perpendicular_projected_vector_length = nullptr);
 
         /**
          * Check if two vectors are parallel or anti-parallel or not-parallel
