@@ -58,7 +58,7 @@ namespace geo
         static Vector ZAxis();
 
         /**
-         * @brief Returns a vector from start to end.
+         * @brief Returns a vector from start to end. The vector points to the coordinates of the end vector.
          * 
          * @param start The start vector.
          * @param end The end vector.
