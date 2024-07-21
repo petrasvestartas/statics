@@ -274,25 +274,55 @@ namespace geo
         return result;
     }
 
-    double Vector::angle(Vector &other) {
+    double Vector::angle(Vector &other, bool degrees, double tolerance) {
 
-        double lenA = this->length();
-        double lenB = other.length();
-        Vector sum =  lenB * *this + lenA * other;
-        Vector diff = lenB * *this - lenA * other;
-        double angle =  2.0 * atan(diff.length() / sum.length());
+        double dot = this->dot(other);
+        double len0 = this->length();
+        double len1 = other.length();
+        
+        // Ensure the denominator is not zero
+        double denominator = len0 * len1;
+        if (denominator < tolerance) {
+            return 0; // Or handle the error as appropriate
+        }
+        
+        // Calculate the cosine of the angle
+        double cos_angle = dot / denominator;
+        
+        // Clamp cos_angle to the range [-1, 1] to avoid NaN errors due to floating point inaccuracies
+        cos_angle = std::max(-1.0, std::min(1.0, cos_angle));
+        
+        // Calculate the angle in radians
+        double angle = acos(cos_angle);
 
         // Determine the sign of the angle using the z-component of the cross product
         Vector crossProduct = this->cross(other);
-        if (crossProduct._xyz[2] < 0)
+        if (crossProduct._xyz[2] < 0) {
             angle = -angle;
+        }
+
+        // Return the angle in degrees if requested
+        if (degrees) {
+            angle = angle * (180.0 / GLOBALS::PI);
+        } else {
+            angle = angle;
+        }
+        
+        // double len0 = this->length();
+        // double len1 = other.length();
+        // Vector sum =  len1 * *this + len0 * other;
+        // Vector diff = len1 * *this - len0 * other;
+        // double angle =  2.0 * atan(diff.length() / sum.length());
+
+        // // Determine the sign of the angle using the z-component of the cross product
+        // Vector crossProduct = this->cross(other);
+        // if (crossProduct._xyz[2] < 0)
+        //     angle = -angle;
 
         return angle;
     }
 
-    double Vector::angle_degrees(Vector &other) {
-        return this->angle(other) * (180.0 / GLOBALS::PI);
-    }
+
 
     Vector Vector::get_leveled_vector(double &vertical_height)
     {
@@ -302,7 +332,7 @@ namespace geo
         if (copy.unitize())
         {
             Vector referenceVector(0, 0, 1);
-            double angle = copy.angle_degrees(referenceVector);
+            double angle = copy.angle(referenceVector, true);
             double inclined_offset_by_vertical_distance = vertical_height / std::cos(angle);
             copy *= inclined_offset_by_vertical_distance;
         }

@@ -244,15 +244,13 @@ namespace geo
 
         /**
          * @brief Calculate an angle between two vectors.
-         * @return Angle in radians.
+         *
+         * @param [in] other vector
+         * @param [in] degrees if true, the angle will be returned in degrees, otherwise in radians
+         * @param [in] tolerance tolerance for comparing the angle with 0 and 180 degrees
+         * @return Angle in radians or degrees.
          */
-        double angle(Vector &other);
-
-        /**
-         * @brief Calculate an angle between two vectors.
-         * @return Angle in degrees.
-         */
-        double angle_degrees(Vector &other);
+        double angle(Vector &other, bool degrees = false, double tolerance = geo::GLOBALS::ZERO_TOLERANCE);
 
         /**
          * Scale the vector to the given vertical height
