@@ -243,7 +243,7 @@ namespace geo
         // int cross_product_sign(Vector &other);
 
         /**
-         * @brief Calculate an angle between two vectors.
+         * @brief Calculate an angle between two vectors. Angle is the dot product divided by the multiplication of the magnitudes of the vectors.
          *
          * @param [in] other vector
          * @param [in] degrees if true, the angle will be returned in degrees, otherwise in radians
