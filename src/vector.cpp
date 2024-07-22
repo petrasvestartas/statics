@@ -12,12 +12,6 @@ namespace geo
         _has_length = false;
     }
 
-    std::string Vector::to_string() const {
-        std::ostringstream oss;
-        oss << "(" << _xyz[0] << ", " << _xyz[1] << ", " << _xyz[2] << ")";
-        return oss.str();
-    }
-
     Vector Vector::XAxis() {
         return Vector(1, 0, 0);
     }
@@ -427,18 +421,36 @@ namespace geo
         _xyz[0] *= factor;
         _xyz[1] *= factor;
         _xyz[2] *= factor;
+        _has_length = false;
+        _has_unit_vector = false;
     }
     
     void Vector::scale_up() {
         scale(GLOBALS::SCALE);
+        _has_length = false;
     }
     void Vector::scale_down() {
         scale(1.0 / GLOBALS::SCALE);
+        _has_length = false;
     }
 
     void Vector::rescale(double factor) {
         unitize();
         scale(factor);
+        _has_length = false;
+        
     }
+
+std::string Vector::to_string() {
+    std::ostringstream oss;
+
+    oss << "geo::Vector "
+        << _xyz[0] << " "
+        << _xyz[1] << " "
+        << _xyz[2] << " "
+        << this->length();
+
+    return oss.str();
+}
 
 } // namespace geo

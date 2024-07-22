@@ -1,8 +1,9 @@
 #pragma once
 #include <string>
+#include <sstream>
+#include <cstring>
 #include "globals.hpp"
 #include <cmath>
-#include <sstream>
 #include <iostream>
 #include <vector>
 #include <math.h>
@@ -30,11 +31,6 @@ namespace geo
          * @param z The z-coordinate.
          */
         Vector(double x, double y, double z);
-
-        /**
-        * @brief convert vector to string
-        */
-        std::string to_string() const;
 
         /**
          * @brief Returns a unit vector along the x-axis.
@@ -399,6 +395,12 @@ namespace geo
         //  * @param matrix - The matrix to transform by.
         //  */
         // void transform(const double matrix[4][4]);
+
+        /**
+         * @brief Returns a string representation of the Vector including its class name and xyz coordinates.
+         * @return A string representation of the Vector.
+         */
+        std::string to_string();
 
     private:
         /**

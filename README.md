@@ -51,17 +51,7 @@ sudo apt install cmake
 </p>
 
 
-```cpp
-#include "core.hpp"
-
-int main() {
-  geo::Vector v(0.57, -158.63, 180.890);
-  double x = v[0];
-  double y = v[1];
-  double z = v[2];
-  double length = v.length();
-}
-```
+The example code can be found here: [here](/examples/chapter2/1_vector.cpp)
 
 <p align="center">
   <img alt="Page 1" src="images/chapter2/Page 3.png">
@@ -70,7 +60,7 @@ int main() {
 ```cpp
 #include "core.hpp"
 
-int main() {
+void main() {
     geo::Vector v(1, 1, 1);
     v.scale(2);
     v.rescale(-1.5); // unitize and scale the vector
@@ -85,7 +75,7 @@ int main() {
 ```cpp
 #include "core.hpp"
 
-int main() {
+void main() {
     geo::Vector a(1, 0, 0);
     geo::Vector b(1.5, 0, 0);
     geo::Vector r = a + b;
@@ -104,7 +94,7 @@ int main() {
 ```cpp
 #include "core.hpp"
 
-int main() {
+void main() {
 
     // cosine law
     double f1 = 100;
