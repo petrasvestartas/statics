@@ -37,6 +37,9 @@ sudo apt install cmake
 ## Inspiration
 <img width="783" alt="image" src="https://github.com/petrasvestartas/statics/assets/18013985/bde2fff1-ce70-49c9-9abf-495edb5b7266">
 
-## Chapte2
+## Chapter 2
 
 <img width="783" alt="image" src="images/chapter2/Page 1.svg">
+```bash
+code
+```
