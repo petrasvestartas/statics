@@ -55,6 +55,7 @@ code
 
 ```bash
 code
+```
 
 <p align="center">
   <img alt="Page 1" src="images/chapter2/Page 3.png">
@@ -63,6 +64,7 @@ code
 
 ```bash
 code
+```
 
 <p align="center">
   <img alt="Page 1" src="images/chapter2/Page 4.png">
@@ -71,6 +73,7 @@ code
 
 ```bash
 code
+```
 
 <p align="center">
   <img alt="Page 1" src="images/chapter2/Page 5.png">
@@ -79,3 +82,4 @@ code
 
 ```bash
 code
+```
