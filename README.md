@@ -44,75 +44,30 @@ sudo apt install cmake
 </p>
 
 
-
+The example code can be found here: [1_vector](/examples/chapter2/1_vector.cpp)
 
 <p align="center">
   <img alt="Page 1" src="images/chapter2/Page 2.png">
 </p>
 
 
-The example code can be found here: [here](/examples/chapter2/1_vector.cpp)
+The example code can be found here: [1_vector](/examples/chapter2/2_scale_of_a_vector.cpp)
 
 <p align="center">
   <img alt="Page 1" src="images/chapter2/Page 3.png">
 </p>
 
-```cpp
-#include "core.hpp"
-
-void main() {
-    geo::Vector v(1, 1, 1);
-    v.scale(2);
-    v.rescale(-1.5); // unitize and scale the vector
-    v.rescale(-0.5);
-}
-```
+The example code can be found here: [1_vector](/examples/chapter2/3_sum_of_vectors.cpp)
 
 <p align="center">
   <img alt="Page 1" src="images/chapter2/Page 4.png">
 </p>
 
-```cpp
-#include "core.hpp"
-
-void main() {
-    geo::Vector a(1, 0, 0);
-    geo::Vector b(1.5, 0, 0);
-    geo::Vector r = a + b;
-
-    geo::Vector f1(-2, 2.5, 0);
-    geo::Vector f2(4, 0, 0);
-    geo::Vector r = f1 + f2;
-}
-```
+The example code can be found here: [1_vector](/examples/chapter2/4_law_of_cosine_and_sine.cpp)
 
 <p align="center">
   <img alt="Page 1" src="images/chapter2/Page 5.png">
 </p>
 
 
-```cpp
-#include "core.hpp"
 
-void main() {
-
-    // cosine law
-    double f1 = 100;
-    double f2 = 150;
-    double theta_r = 115;
-    double r = geo::Vector::cosine_law(f1, f2, theta_r);
-
-    // sine law - angle
-    double triangle_edge_length_a = 212.55;
-    double angle_in_degrees_in_front_of_a = 115; 
-    double triangle_edge_length_b = 150;
-    double angle_in_degrees_in_front_of_b = geo::Vector::sine_law_angle(triangle_edge_length_a, angle_in_degrees_in_front_of_a, triangle_edge_length_b);
-
-    // sine law - length
-    double triangle_edge_length_a = 212.55;
-    double angle_in_degrees_in_front_of_a = 115;
-    double angle_in_degrees_in_front_of_b = 39.761714;
-    double triangle_edge_length_b = geo::Vector::sine_law_length(triangle_edge_length_a, angle_in_degrees_in_front_of_a, angle_in_degrees_in_front_of_b);
-
-}
-```
