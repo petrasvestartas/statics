@@ -40,6 +40,7 @@ sudo apt install cmake
 ## Chapter 2
 
 <img width="783" alt="image" src="images/chapter2/Page 1.svg">
+
 ```bash
 code
 ```
