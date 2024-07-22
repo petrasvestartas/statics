@@ -12,5 +12,24 @@ cmake -G "Visual Studio 17 2022" ..
 REM Build the project with the specified configuration
 cmake --build . --config Release
 
-REM Run the executable
-.\Release\MyProject.exe
+cd ..
+
+REM Assuming the executables are in the Release folder under examples\chapter2
+set "BASE_DIR=%~dp0examples\chapter2"
+
+REM Check if the base directory exists
+if exist "%BASE_DIR%" (
+    cd "%BASE_DIR%"
+    for /d %%D in (*) do (
+        cd "%%D"
+        for %%X in (*.exe) do (
+            if exist "%%X" (
+                echo Running example: %%X
+                .\Release\%%X
+            )
+        )
+        cd ..
+    )
+) else (
+    echo Base directory does not exist: %BASE_DIR%
+)
