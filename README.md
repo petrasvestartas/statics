@@ -37,12 +37,13 @@ sudo apt install cmake
 ## Inspiration
 <img width="783" alt="image" src="https://github.com/petrasvestartas/statics/assets/18013985/bde2fff1-ce70-49c9-9abf-495edb5b7266">
 
-## Chapter 2 - Force Vectors
+## Summary of symbols
 
 <p align="center">
   <img alt="Page 1" src="images/chapter2/Page 1.png">
 </p>
 
+## Chapter 2 - Force Vectors
 
 The example code: [1_vector](/examples/chapter2/1_vector.cpp)
 
