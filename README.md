@@ -44,6 +44,13 @@ sudo apt install cmake
 </p>
 
 
+
+
+<p align="center">
+  <img alt="Page 1" src="images/chapter2/Page 2.png">
+</p>
+
+
 ```cpp
 #include "core.hpp"
 
@@ -54,35 +61,39 @@ int main() {
   double z = v[2];
   double length = v.length();
 }
-
-
-```
-
-<p align="center">
-  <img alt="Page 1" src="images/chapter2/Page 2.png">
-</p>
-
-
-```bash
-code
 ```
 
 <p align="center">
   <img alt="Page 1" src="images/chapter2/Page 3.png">
 </p>
 
+```cpp
+#include "core.hpp"
 
-```bash
-code
+int main() {
+    geo::Vector v(1, 1, 1);
+    v.scale(2);
+    v.rescale(-1.5); // unitize and scale the vector
+    v.rescale(-0.5);
+}
 ```
 
 <p align="center">
   <img alt="Page 1" src="images/chapter2/Page 4.png">
 </p>
 
+```cpp
+#include "core.hpp"
 
-```bash
-code
+int main() {
+    geo::Vector a(1, 0, 0);
+    geo::Vector b(1.5, 0, 0);
+    geo::Vector r = a + b;
+
+    geo::Vector f1(-2, 2.5, 0);
+    geo::Vector f2(4, 0, 0);
+    geo::Vector r = f1 + f2;
+}
 ```
 
 <p align="center">
@@ -90,6 +101,28 @@ code
 </p>
 
 
-```bash
-code
+```cpp
+#include "core.hpp"
+
+int main() {
+
+    // cosine law
+    double f1 = 100;
+    double f2 = 150;
+    double theta_r = 115;
+    double r = geo::Vector::cosine_law(f1, f2, theta_r);
+
+    // sine law - angle
+    double triangle_edge_length_a = 212.55;
+    double angle_in_degrees_in_front_of_a = 115; 
+    double triangle_edge_length_b = 150;
+    double angle_in_degrees_in_front_of_b = geo::Vector::sine_law_angle(triangle_edge_length_a, angle_in_degrees_in_front_of_a, triangle_edge_length_b);
+
+    // sine law - length
+    double triangle_edge_length_a = 212.55;
+    double angle_in_degrees_in_front_of_a = 115;
+    double angle_in_degrees_in_front_of_b = 39.761714;
+    double triangle_edge_length_b = geo::Vector::sine_law_length(triangle_edge_length_a, angle_in_degrees_in_front_of_a, angle_in_degrees_in_front_of_b);
+
+}
 ```
