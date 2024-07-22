@@ -15,8 +15,6 @@ cmake --build . --config Release
 REM Run the executable
 .\Release\MyProject.exe
 
-@REM cd ..
-
 REM Assuming the executables are in the Release folder under each project directory in examples\chapter2
 set "BASE_DIR=%~dp0build\examples\chapter2"
 

@@ -13,7 +13,6 @@ core
 core.*
 *.bak
 *~
-*build*
 *.moc.*
 *.moc
 ui_*
