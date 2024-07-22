@@ -47,3 +47,35 @@ sudo apt install cmake
 ```bash
 code
 ```
+
+<p align="center">
+  <img alt="Page 1" src="images/chapter2/Page 2.png">
+</p>
+
+
+```bash
+code
+
+<p align="center">
+  <img alt="Page 1" src="images/chapter2/Page 3.png">
+</p>
+
+
+```bash
+code
+
+<p align="center">
+  <img alt="Page 1" src="images/chapter2/Page 4.png">
+</p>
+
+
+```bash
+code
+
+<p align="center">
+  <img alt="Page 1" src="images/chapter2/Page 5.png">
+</p>
+
+
+```bash
+code
