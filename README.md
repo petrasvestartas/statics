@@ -51,19 +51,19 @@ The example code can be found here: [1_vector](/examples/chapter2/1_vector.cpp)
 </p>
 
 
-The example code can be found here: [1_vector](/examples/chapter2/2_scale_of_a_vector.cpp)
+The example code can be found here: [2_scale_of_a_vector](/examples/chapter2/2_scale_of_a_vector.cpp)
 
 <p align="center">
   <img alt="Page 1" src="images/chapter2/Page 3.png">
 </p>
 
-The example code can be found here: [1_vector](/examples/chapter2/3_sum_of_vectors.cpp)
+The example code can be found here: [3_sum_of_vectors](/examples/chapter2/3_sum_of_vectors.cpp)
 
 <p align="center">
   <img alt="Page 1" src="images/chapter2/Page 4.png">
 </p>
 
-The example code can be found here: [1_vector](/examples/chapter2/4_law_of_cosine_and_sine.cpp)
+The example code can be found here: [4_law_of_cosine_and_sine](/examples/chapter2/4_law_of_cosine_and_sine.cpp)
 
 <p align="center">
   <img alt="Page 1" src="images/chapter2/Page 5.png">
