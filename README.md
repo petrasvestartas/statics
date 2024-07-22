@@ -40,7 +40,7 @@ sudo apt install cmake
 ## Chapter 2 - Force Vectors
 
 <p align="center">
-  <img alt="Page 1" src="images/chapter2/Page 1.svg">
+  <img alt="Page 1" src="images/chapter2/Page 1.png">
 </p>
 
 
