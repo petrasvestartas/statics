@@ -35,6 +35,7 @@ sudo apt install cmake
 ```
 
 ## Inspiration
+
 <p align="center">
 <img width="783" alt="344260911-bde2fff1-ce70-49c9-9abf-495edb5b7266" src="https://github.com/user-attachments/assets/c4a1f000-2e80-4a16-a4c4-e61d2868a143">
 
