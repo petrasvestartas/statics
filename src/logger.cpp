@@ -30,9 +30,9 @@ namespace geo {
         auto& logFile = Logger::getLogFile();
         std::string formattedMessage;
         if (color != LogLevel::DEFAULT) {
-            formattedMessage = "\033[" + std::to_string(static_cast<int>(color)) + "m" + message + "\033[0m";
+            formattedMessage = "\033[" + std::to_string(static_cast<int>(color)) + "m" + "   " +  message + "\033[0m";
         } else {
-            formattedMessage = message;
+            formattedMessage = "   " + message;
         }
 
         if (logFile.is_open()) {
