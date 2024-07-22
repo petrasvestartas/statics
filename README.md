@@ -37,7 +37,7 @@ sudo apt install cmake
 ## Inspiration
 <img width="783" alt="image" src="https://github.com/petrasvestartas/statics/assets/18013985/bde2fff1-ce70-49c9-9abf-495edb5b7266">
 
-## Chapter 2
+## Chapter 2 - Force Vectors
 
 <img width="783" alt="image" src="images/chapter2/Page 1.svg">
 
