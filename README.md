@@ -44,27 +44,26 @@ sudo apt install cmake
 </p>
 
 ## Chapter 2 - Force Vectors
-
-The example code: [1_vector](/examples/chapter2/1_vector.cpp)
+[Example Code](/examples/chapter2/1_vector.cpp)
 
 <p align="center">
   <img alt="Page 1" src="images/chapter2/Page 2.png">
 </p>
 
 
-The example code: [2_scale_of_a_vector](/examples/chapter2/2_scale_of_a_vector.cpp)
+[Example Code](/examples/chapter2/2_scale_of_a_vector.cpp)
 
 <p align="center">
   <img alt="Page 1" src="images/chapter2/Page 3.png">
 </p>
 
-The example code: [3_sum_of_vectors](/examples/chapter2/3_sum_of_vectors.cpp)
+[Example Code](/examples/chapter2/3_sum_of_vectors.cpp)
 
 <p align="center">
   <img alt="Page 1" src="images/chapter2/Page 4.png">
 </p>
 
-The example code: [4_law_of_cosine_and_sine](/examples/chapter2/4_law_of_cosine_and_sine.cpp)
+[Example Code](/examples/chapter2/4_law_of_cosine_and_sine.cpp)
 
 <p align="center">
   <img alt="Page 1" src="images/chapter2/Page 5.png">
