@@ -35,10 +35,5 @@ int main() {
     double sum_cosines = pow(cos(coordinate_angles[0]),2) + pow(cos(coordinate_angles[1]),2) + pow(cos(coordinate_angles[2]),2);
     geo::log(std::to_string(sum_cosines));
 
-
-
-    
-
-
     return 1;
 }
