@@ -73,5 +73,10 @@ sudo apt install cmake
   <img alt="Page 1" src="images/chapter2/Page 5.png">
 </p>
 
+[Example Code](/examples/chapter2/5_rectangular_components.cpp)
+
+<p align="center">
+  <img alt="Page 1" src="images/chapter2/Page 6.png">
+</p>
 
 

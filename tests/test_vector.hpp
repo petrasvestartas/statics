@@ -152,7 +152,7 @@ void angle(){
 
     geo::Vector v1(1, 1, 0);
     geo::Vector v2(0, 1, 0);
-    double angle = v1.angle(v2, true);
+    double angle = v1.angle(v2, false);
     my_assert(angle-45 < geo::GLOBALS::ZERO_TOLERANCE );
     v1 = geo::Vector(-1, 1, 0);
     angle = v1.angle(v2, angle);
@@ -174,7 +174,7 @@ void cosine_law(){
     double triangle_edge_length_a = 100;
     double triangle_edge_length_b = 150;
     double angle_in_degrees_between_edges = 115;
-    double triangle_edge_length_c = geo::Vector::cosine_law(triangle_edge_length_a, triangle_edge_length_b, angle_in_degrees_between_edges);
+    double triangle_edge_length_c = geo::Vector::cosine_law(triangle_edge_length_a, triangle_edge_length_b, angle_in_degrees_between_edges, true);
 
     double scale = std::pow(10.0, 2);
     triangle_edge_length_c = std::round(triangle_edge_length_c * scale) / scale;
@@ -192,8 +192,6 @@ void sine_law_angle(){
     double scale = std::pow(10.0, 2);
     angle_in_degrees_in_front_of_b = std::round(angle_in_degrees_in_front_of_b * scale) / scale;
     my_assert(angle_in_degrees_in_front_of_b == 39.76);
-
-    
 }
 
 void sine_law_length(){

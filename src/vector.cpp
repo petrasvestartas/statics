@@ -24,6 +24,17 @@ namespace geo
         return Vector(0, 0, 1);
     }
 
+    Vector Vector::xc() const {
+        return Vector(_xyz[0], 0, 0);
+    }
+
+    Vector Vector::yc() const {
+        return Vector(0, _xyz[1], 0);
+    }
+
+    Vector Vector::zc() const {
+        return Vector(0, 0, _xyz[2]);
+    }
 
     Vector Vector::from_start_and_end(const Vector& start, const Vector& end) {
         return Vector(end._xyz[0] - start._xyz[0], 
@@ -122,6 +133,29 @@ namespace geo
             double x = abs(_xyz[0]);
             double y = abs(_xyz[1]);
             double z = abs(_xyz[2]);
+
+            // Handle two zero case:
+            bool x_zero = x < geo::GLOBALS::ZERO_TOLERANCE;
+            bool y_zero = y < geo::GLOBALS::ZERO_TOLERANCE;
+            bool z_zero = z < geo::GLOBALS::ZERO_TOLERANCE;
+
+            if (x_zero && y_zero && z_zero)
+            {
+                _length = 0.0;
+                return _length;;
+            } else if (x_zero && y_zero) {
+                _length = z;
+                return _length;
+            } else if (x_zero && z_zero) {
+                _length = y;
+                return _length;
+            } else if (y_zero && z_zero) {
+                _length = x;
+                return _length;
+            }
+
+            // Handle one or none zero case:
+
             if (y >= x && y >= z)
             {
                 _length = x;
@@ -268,7 +302,7 @@ namespace geo
         return result;
     }
 
-    double Vector::angle(Vector &other, bool degrees, double tolerance) {
+    double Vector::angle(Vector &other, bool sign_by_cross_product, bool degrees, double tolerance) {
 
         double dot = this->dot(other);
         double len0 = this->length();
@@ -290,33 +324,18 @@ namespace geo
         double angle = acos(cos_angle);
 
         // Determine the sign of the angle using the z-component of the cross product
-        Vector crossProduct = this->cross(other);
-        if (crossProduct._xyz[2] < 0) {
-            angle = -angle;
+        if (sign_by_cross_product){
+            Vector crossProduct = this->cross(other);
+            if (crossProduct._xyz[2] < 0) {
+                angle = -angle;
+            }
         }
 
         // Return the angle in degrees if requested
-        if (degrees) {
-            angle = angle * (180.0 / GLOBALS::PI);
-        } else {
-            angle = angle;
-        }
-        
-        // double len0 = this->length();
-        // double len1 = other.length();
-        // Vector sum =  len1 * *this + len0 * other;
-        // Vector diff = len1 * *this - len0 * other;
-        // double angle =  2.0 * atan(diff.length() / sum.length());
+        double to_degrees = degrees ? GLOBALS::TO_DEGREES : 1.0;
 
-        // // Determine the sign of the angle using the z-component of the cross product
-        // Vector crossProduct = this->cross(other);
-        // if (crossProduct._xyz[2] < 0)
-        //     angle = -angle;
-
-        return angle;
+        return angle*to_degrees;
     }
-
-
 
     Vector Vector::get_leveled_vector(double &vertical_height)
     {
@@ -334,26 +353,26 @@ namespace geo
         return copy;
     }
 
-    double Vector::cosine_law(double& triangle_edge_length_a, double& triangle_edge_length_b, double& angle_in_degrees_between_edges){
-        double angle_in_radians_between_edges = angle_in_degrees_between_edges * GLOBALS::PI / 180.0;
-        double result = sqrt(pow(triangle_edge_length_a, 2) + pow(triangle_edge_length_b, 2) - 2*triangle_edge_length_a*triangle_edge_length_b*cos(angle_in_radians_between_edges));
-        return result;
+
+    double Vector::cosine_law(double& triangle_edge_length_a, double& triangle_edge_length_b, double& angle_in_between_edges, bool degrees){
+        double to_radians = degrees ? GLOBALS::TO_RADIANS : 1;
+        return sqrt(pow(triangle_edge_length_a, 2) + pow(triangle_edge_length_b, 2) - 2*triangle_edge_length_a*triangle_edge_length_b*cos(angle_in_between_edges*to_radians ));
     }
 
-    double Vector::sine_law_angle(double& triangle_edge_length_a, double& angle_in_degrees_in_front_of_a, double& triangle_edge_length_b){
-        double angle_in_radians_in_front_of_a = angle_in_degrees_in_front_of_a * GLOBALS::PI / 180.0;
-        return asin( (triangle_edge_length_b * sin(angle_in_radians_in_front_of_a)) / triangle_edge_length_a ) * 180.0 / GLOBALS::PI;
+    double Vector::sine_law_angle(double& triangle_edge_length_a, double& angle_in_front_of_a, double& triangle_edge_length_b, bool degrees){
+        double to_radians = degrees ? GLOBALS::TO_RADIANS : 1;
+        double to_degrees = degrees ? GLOBALS::TO_DEGREES : 1;
+        return asin( (triangle_edge_length_b * sin(angle_in_front_of_a*to_radians)) / triangle_edge_length_a ) * to_degrees;
     }
 
-    double Vector::sine_law_length(double& triangle_edge_length_a, double& angle_in_degrees_in_front_of_a, double& angle_in_degrees_in_front_of_b){
-        double angle_in_radians_in_front_of_a = angle_in_degrees_in_front_of_a * GLOBALS::PI / 180.0;
-        double angle_in_radians_in_front_of_b = angle_in_degrees_in_front_of_b * GLOBALS::PI / 180.0;
-        return (triangle_edge_length_a * sin(angle_in_radians_in_front_of_b))/sin(angle_in_radians_in_front_of_a);
+    double Vector::sine_law_length(double& triangle_edge_length_a, double& angle_in_front_of_a, double& angle_in_front_of_b, bool degrees){
+        double to_radians = degrees ? GLOBALS::TO_RADIANS : 1;
+        return (triangle_edge_length_a * sin(angle_in_front_of_b*to_radians))/sin(angle_in_front_of_a*to_radians);
     }
 
-    double Vector::angle_between_vector_xy_components_degrees(Vector &vector){
-        double angle_between_inclined_vector_and_horizontal_component = atan(vector[1]/vector[0]);
-        return angle_between_inclined_vector_and_horizontal_component * 180.0 / GLOBALS::PI;
+    double Vector::angle_between_vector_xy_components_degrees(Vector &vector, bool degrees){
+        double to_degrees = degrees ? GLOBALS::TO_DEGREES : 1;
+        return atan(vector[1]/vector[0])*to_degrees;
     }
 
     Vector Vector::sum_of_vectors(std::vector<Vector> &vectors){

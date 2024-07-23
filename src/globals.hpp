@@ -29,6 +29,8 @@ namespace geo
             static constexpr double FORCE = 1;
             static constexpr double MASS = 1;
             static constexpr double LENGTH = 1;
+            static constexpr double TO_DEGREES = 57.295779513082320876798154814105;
+            static constexpr double TO_RADIANS  = 0.01745329251994329576923690768489;
    };
 
 

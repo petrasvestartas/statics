@@ -28,9 +28,9 @@ namespace geo
          * @brief Constructor that initializes the Vector at the given coordinates.
          * @param x The x-coordinate.
          * @param y The y-coordinate.
-         * @param z The z-coordinate.
+         * @param z The z-coordinate, optional.
          */
-        Vector(double x, double y, double z);
+        Vector(double x, double y, double z=0);
 
         /**
          * @brief Returns a unit vector along the x-axis.
@@ -52,6 +52,27 @@ namespace geo
          * @return Vector The unit vector along the z-axis.
          */
         static Vector ZAxis();
+
+        /**
+        * @brief Get a vector component along the x-axis Vector(x, 0, 0).
+        *
+        * @return Vector component along the x-axis.
+        */
+        Vector xc() const;
+
+        /**
+        * @brief Get a vector component along the x-axis Vector(x, 0, 0).
+        *
+        * @return Vector component along the x-axis.
+        */
+        Vector yc() const;
+
+        /**
+        * @brief Get a vector component along the x-axis Vector(x, 0, 0).
+        *
+        * @return Vector component along the x-axis.
+        */
+        Vector zc() const;
 
         /**
          * @brief Returns a vector from start to end. The vector points to the coordinates of the end vector.
@@ -242,11 +263,11 @@ namespace geo
          * @brief Calculate an angle between two vectors. Angle is the dot product divided by the multiplication of the magnitudes of the vectors.
          *
          * @param [in] other vector
-         * @param [in] degrees if true, the angle will be returned in degrees, otherwise in radians
+         * @param [in] radians if true, the angle will be returned in radians, otherwise in degrees
          * @param [in] tolerance tolerance for comparing the angle with 0 and 180 degrees
          * @return Angle in radians or degrees.
          */
-        double angle(Vector &other, bool degrees = false, double tolerance = geo::GLOBALS::ZERO_TOLERANCE);
+        double angle(Vector &other, bool sign_by_cross_product = true, bool degrees = true, double tolerance = geo::GLOBALS::ZERO_TOLERANCE);
 
         /**
          * Scale the vector to the given vertical height
@@ -276,10 +297,10 @@ namespace geo
         * 
         * @param [in] triangle_edge_length_a first edge length
         * @param [in] triangle_edge_length_b second edge length
-        * @param [in] angle_in_degrees_between_edges angle between the edges that will be used in cosine function
+        * @param [in] angle_between_edges angle between the edges that will be used in cosine function
         * @return the length of opposite triangle length
         */
-        static double cosine_law(double& triangle_edge_length_a, double& triangle_edge_length_b, double& angle_in_degrees_between_edges);
+        static double cosine_law(double& triangle_edge_length_a, double& triangle_edge_length_b, double& angle_in_degrees_between_edges, bool degrees = true);
 
         /**
          * Compute and edge of a triangle or the angle in front of it.
@@ -297,11 +318,11 @@ namespace geo
          *   b     C    a
          * 
          * @param [in] triangle_edge_length_a any other triangle edge length
-         * @param [in] angle_in_degrees_in_front_of_a triangle angle opposite of that edge
+         * @param [in] angle_in_front_of_a triangle angle opposite of that edge
          * @param [in] triangle_edge_length_b the length of searchable triangle edge
          * @return the angle in front of the edge b
         */
-        static double sine_law_angle(double& triangle_edge_length_a, double& angle_in_degrees_in_front_of_a, double& triangle_edge_length_b);
+        static double sine_law_angle(double& triangle_edge_length_a, double& angle_in_front_of_a, double& triangle_edge_length_b, bool degrees = true);
 
         /**
          * Compute and edge of a triangle or the angle in front of it.
@@ -322,11 +343,11 @@ namespace geo
          *   triangle_edge_length_b
          * 
          * @param [in] triangle_edge_length_a any other triangle edge length
-         * @param [in] angle_in_degrees_in_front_of_a triangle angle opposite of that edge
-         * @param [in] angle_in_degrees_in_front_of_b the angle in front of searchable triangle edge
+         * @param [in] angle_in_front_of_a triangle angle opposite of that edge
+         * @param [in] angle_in_front_of_b the angle in front of searchable triangle edge
          * @return the length of searchable triangle edge
         */
-        static double sine_law_length(double& triangle_edge_length_a, double& angle_in_degrees_in_front_of_a, double& angle_in_degrees_in_front_of_b);
+        static double sine_law_length(double& triangle_edge_length_a, double& angle_in_front_of_a, double& angle_in_front_of_b, bool degrees = true);
 
         /**
          * Compute the angle between two vectors.
@@ -339,9 +360,9 @@ namespace geo
          * 
          * @param [in] v1 first vector
          * @param [in] v2 second vector
-         * @return the angle between two vectors in degrees
+         * @return the angle between two vectors
          */
-        static double angle_between_vector_xy_components_degrees(Vector &vector);
+        static double angle_between_vector_xy_components_degrees(Vector &vector, bool degrees = true);
 
         /**
          * @brief Algebraic sum of vectors, by summing up the components.
