@@ -385,10 +385,10 @@ namespace geo
         return Vector(x, y, z);
     }
 
-    std::array<double, 3> Vector::coordinate_direction_3angles(Vector &v, bool degrees){
-        double x = v[0];
-        double y = v[1];
-        double z = v[2];
+    std::array<double, 3> Vector::coordinate_direction_3angles(bool degrees){
+        double x = _xyz[0];
+        double y = _xyz[1];
+        double z = _xyz[2];
         double r = sqrt(x*x + y*y + z*z);
 
         // unit vector
@@ -413,10 +413,10 @@ namespace geo
 
     }
 
-    std::array<double, 2> Vector::coordinate_direction_2angles(Vector &v, bool degrees){
-        double x = v[0];
-        double y = v[1];
-        double z = v[2];
+    std::array<double, 2> Vector::coordinate_direction_2angles(bool degrees){
+        double x = _xyz[0];
+        double y = _xyz[1];
+        double z = _xyz[2];
         double r = sqrt(x*x + y*y + z*z);
 
         // unit vector

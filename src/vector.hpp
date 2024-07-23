@@ -376,18 +376,16 @@ namespace geo
         /**
          * @brief Calculate the angle between the vector and the coordinate axes.
          * 
-         * @param [in] v vector
          * @return the angle between the vector and the coordinate axes in degrees
          */
-        static std::array<double, 3> coordinate_direction_3angles(Vector &v, bool degrees = false);
+        std::array<double, 3> coordinate_direction_3angles(bool degrees = false);
 
         /**
          * @brief Calculate the horizontal and vertical angle between the vector and the coordinate axes.
          * 
-         * @param [in] v vector
          * @return the angle between the vector and the coordinate axes in degrees
          */
-        static std::array<double, 2> coordinate_direction_2angles(Vector &v, bool degrees = false);
+        std::array<double, 2> coordinate_direction_2angles(bool degrees = false);
 
         /**
          * @brief Scales the Vector by a given factor.

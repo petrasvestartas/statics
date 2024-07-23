@@ -224,11 +224,11 @@ void sum_of_vectors(){
 
 void coordinate_direction_angles(){
     geo::Vector v(35.4, 35.4, 86.6);
-    std::array<double, 3> alpha_beta_gamma = geo::Vector::coordinate_direction_3angles(v, true);
+    std::array<double, 3> alpha_beta_gamma = v.coordinate_direction_3angles(true);
     my_assert(abs(alpha_beta_gamma[0]-69.274204) < geo::GLOBALS::MICRO && abs(alpha_beta_gamma[1]-69.274204)<geo::GLOBALS::MICRO  && abs(alpha_beta_gamma[2]-30.032058) < geo::GLOBALS::MICRO);
     
     v = geo::Vector(1, 1, sqrt(2));
-    std::array<double, 2> phi_theta = geo::Vector::coordinate_direction_2angles(v, true);
+    std::array<double, 2> phi_theta = v.coordinate_direction_2angles(true);
     my_assert(abs(phi_theta[0]-45) < geo::GLOBALS::MICRO && abs(phi_theta[1]-45)<geo::GLOBALS::MICRO);
 }
 
