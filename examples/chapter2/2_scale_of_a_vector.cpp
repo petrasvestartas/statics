@@ -1,5 +1,4 @@
 #include "core.hpp"
-#include <iostream> 
 
 int main() {
     geo::Vector v(1, 1, 1);
