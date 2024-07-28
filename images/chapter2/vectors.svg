@@ -25,7 +25,7 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="1.4142136"
-     inkscape:cx="5489.2698"
+     inkscape:cx="5691.1488"
      inkscape:cy="199.40411"
      inkscape:window-width="2478"
      inkscape:window-height="1531"
@@ -96,7 +96,7 @@
        id="page2"
        margin="0"
        bleed="0"
-       inkscape:export-filename="vectors.svg"
+       inkscape:export-filename="Page 8.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300" />
     <inkscape:page
@@ -5444,9 +5444,9 @@
      transform="translate(1585.0959,-113.76779)"><tspan
        x="453.21213"
        y="541.55035"
-       id="tspan40">0.5 <tspan
+       id="tspan5">0.5 <tspan
    style="font-weight:bold;-inkscape-font-specification:'Open Sans Bold'"
-   id="tspan39">a</tspan></tspan></text>
+   id="tspan2">a</tspan></tspan></text>
   <text
      xml:space="preserve"
      style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans';mix-blend-mode:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.77953;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
@@ -6357,15 +6357,25 @@
      transform="translate(-207.56718,36.863921)"><tspan
        x="5858.1572"
        y="93.567123"
-       id="tspan42"><tspan
+       id="tspan7"><tspan
    style="font-weight:300;-inkscape-font-specification:'Open Sans Light';text-align:center;text-anchor:middle;opacity:1"
-   id="tspan41">A position vector locates one point in space </tspan>
+   id="tspan6">A position vector locates one point in space </tspan>
 </tspan><tspan
        x="5858.1572"
        y="118.56713"
-       id="tspan44"><tspan
+       id="tspan9"><tspan
          style="font-weight:300;-inkscape-font-specification:'Open Sans Light';text-align:center;text-anchor:middle;opacity:1"
-         id="tspan43">relative to another.</tspan></tspan></text>
+         id="tspan8">relative to another.</tspan></tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans';mix-blend-mode:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.77953;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+     x="6033.1274"
+     y="24.919903"
+     id="text9310-4-0-5-0-6-5-3"><tspan
+       x="6033.1274"
+       y="24.919903"
+       style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:20px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans Light';text-align:center;text-anchor:middle;opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-opacity:1"
+       id="tspan56348-7-1-99-6">3d position vectors</tspan></text>
   <text
      xml:space="preserve"
      style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans';white-space:pre;inline-size:430.247;display:inline;mix-blend-mode:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.77953;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
@@ -6375,24 +6385,24 @@
      transform="translate(-421.96803,247.23301)"><tspan
        x="6071.2334"
        y="93.567123"
-       id="tspan46"><tspan
+       id="tspan21"><tspan
          style="font-weight:300;-inkscape-font-specification:'Open Sans Light';text-align:center;text-anchor:middle"
-         id="tspan45">If the line of action of a force goes through </tspan></tspan><tspan
+         id="tspan10">If the line of action of a force goes through </tspan></tspan><tspan
        x="6071.2334"
        y="118.56713"
-       id="tspan48"><tspan
+       id="tspan23"><tspan
          style="font-weight:300;-inkscape-font-specification:'Open Sans Light';text-align:center;text-anchor:middle"
-         id="tspan47">points a and b then this force can be expressed </tspan></tspan><tspan
+         id="tspan22">points a and b then this force can be expressed </tspan></tspan><tspan
        x="6071.2334"
        y="143.56713"
-       id="tspan50"><tspan
+       id="tspan26"><tspan
          style="font-weight:300;-inkscape-font-specification:'Open Sans Light';text-align:center;text-anchor:middle"
-         id="tspan49">as the unit vector multiplied by the force </tspan></tspan><tspan
+         id="tspan25">as the unit vector multiplied by the force </tspan></tspan><tspan
        x="6071.2334"
        y="168.56713"
-       id="tspan52"><tspan
+       id="tspan28"><tspan
          style="font-weight:300;-inkscape-font-specification:'Open Sans Light';text-align:center;text-anchor:middle"
-         id="tspan51">magnitude.</tspan></tspan></text>
+         id="tspan27">magnitude.</tspan></tspan></text>
   <text
      xml:space="preserve"
      style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans';mix-blend-mode:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.77953;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
@@ -6422,15 +6432,15 @@
      transform="translate(-227.61719,-3.9714808)"><tspan
        x="5051.0601"
        y="312.54721"
-       id="tspan54"><tspan
+       id="tspan30"><tspan
    style="font-weight:300;-inkscape-font-specification:'Open Sans Light';text-align:center;text-anchor:middle;opacity:1"
-   id="tspan53">coordinate direction angles are angles</tspan>
+   id="tspan29">coordinate direction angles are angles</tspan>
 </tspan><tspan
        x="5051.0601"
        y="337.54721"
-       id="tspan56"><tspan
+       id="tspan32"><tspan
          style="font-weight:300;-inkscape-font-specification:'Open Sans Light'"
-         id="tspan55">between the 3d vector and its components</tspan></tspan></text>
+         id="tspan31">between the 3d vector and its components</tspan></tspan></text>
   <text
      xml:space="preserve"
      style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans';white-space:pre;inline-size:479.553;display:inline;mix-blend-mode:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.77953;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
@@ -6440,9 +6450,9 @@
      transform="translate(-197.19625,147.86692)"><tspan
        x="5051.0601"
        y="312.54721"
-       id="tspan58"><tspan
+       id="tspan34"><tspan
          style="font-weight:300;-inkscape-font-specification:'Open Sans Light'"
-         id="tspan57">these angles forms a unit vector as components</tspan></tspan></text>
+         id="tspan33">these angles forms a unit vector as components</tspan></tspan></text>
   <text
      xml:space="preserve"
      style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans';white-space:pre;inline-size:376.358;display:inline;mix-blend-mode:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.77953;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
@@ -6452,15 +6462,15 @@
      transform="translate(-167.83984,-10.679616)"><tspan
        x="5043.4258"
        y="185.81984"
-       id="tspan60"><tspan
+       id="tspan36"><tspan
    style="font-weight:300;-inkscape-font-specification:'Open Sans Light';text-align:center;text-anchor:middle;opacity:1"
-   id="tspan59">unit vector is formed by dividing </tspan>
+   id="tspan35">unit vector is formed by dividing </tspan>
 </tspan><tspan
        x="5043.4258"
        y="210.81983"
-       id="tspan62"><tspan
+       id="tspan38"><tspan
          style="font-weight:300;-inkscape-font-specification:'Open Sans Light';text-align:center;text-anchor:middle;opacity:1"
-         id="tspan61">component vectors by 3d vector length</tspan></tspan></text>
+         id="tspan37">component vectors by 3d vector length</tspan></tspan></text>
   <text
      xml:space="preserve"
      style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:20px;line-height:normal;font-family:'Open Sans';-inkscape-font-specification:'Open Sans Semi-Bold';font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:normal;inline-size:0;mix-blend-mode:normal;vector-effect:none;fill:#00a9ff;fill-opacity:1;stroke:none;stroke-width:3.77953;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000"
