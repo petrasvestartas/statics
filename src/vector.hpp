@@ -409,6 +409,13 @@ namespace geo
          */
         void rescale(double factor);
 
+        /**
+         * @brief Unitize a vector and scale it to a given length.
+         * @param factor The factor to rescale by.
+         * @return Vector that is a copy of the current vector.
+         */
+        Vector rescaled(double factor) ;
+
         // /**
         //  * @brief Transform the vector by a given matrix.
         //  * @param matrix - The matrix to transform by.

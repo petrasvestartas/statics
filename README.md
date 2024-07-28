@@ -85,4 +85,16 @@ sudo apt install cmake
   <img alt="Page 1" src="images/chapter2/Page 7.png">
 </p>
 
+[Example Code](/examples/chapter2/7_position_vectors.cpp)
+
+<p align="center">
+  <img alt="Page 1" src="images/chapter2/Page 8.png">
+</p>
+
+
+[Example Code](/examples/chapter2/8_cartesian_vectors.cpp)
+
+<p align="center">
+  <img alt="Page 1" src="images/chapter2/Page 9.png">
+</p>
 

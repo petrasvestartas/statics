@@ -460,6 +460,13 @@ namespace geo
         
     }
 
+    Vector Vector::rescaled(double factor) {
+        Vector v(_xyz[0], _xyz[1], _xyz[2]);
+        v.unitize();
+        v.scale(factor);
+        return v;        
+    }
+
 std::string Vector::to_string() {
     std::ostringstream oss;
 
