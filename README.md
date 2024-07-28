@@ -92,7 +92,7 @@ sudo apt install cmake
 </p>
 
 
-[Example Code](/examples/chapter2/8_cartesian_vectors.cpp)
+[Example Code](/examples/chapter2/8_dot_product.cpp)
 
 <p align="center">
   <img alt="Page 1" src="images/chapter2/Page 9.png">
