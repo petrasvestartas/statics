@@ -98,3 +98,10 @@ sudo apt install cmake
   <img alt="Page 1" src="images/chapter2/Page 9.png">
 </p>
 
+## Chapter 3 - Equilibrium of a Particle
+
+[Example Code](/examples/chapter2/8_dot_product.cpp)
+
+<p align="center">
+  <img alt="Page 1" src="images/chapter3/Page 1.png">
+</p>
