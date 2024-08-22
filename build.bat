@@ -21,10 +21,20 @@ set "BASE_DIR=%~dp0build\examples"
 REM Check if the base directory exists
 if exist "%BASE_DIR%" (
     echo Current working directory: %cd%
-    REM Find all executable files in the base directory and its subdirectories
-    for /r "%BASE_DIR%" %%X in (*.exe) do (
-        echo Running example: %%X
-        "%%X"
+    
+    REM List directories first, then files, sorted alphabetically
+    for /f "delims=" %%D in ('dir /b /ad "%BASE_DIR%" ^| sort') do (
+        REM Find all executable files in each directory
+        for /r "%BASE_DIR%\%%D" %%X in (*.exe) do (
+            echo Running example: %%X
+            "%%X"
+        )
+    )
+    
+    REM List executable files in the base directory, sorted alphabetically
+    for /f "delims=" %%F in ('dir /b /a-d "%BASE_DIR%\*.exe" ^| sort') do (
+        echo Running example: %BASE_DIR%\%%F
+        "%BASE_DIR%\%%F"
     )
 ) else (
     echo Base directory does not exist: %BASE_DIR%

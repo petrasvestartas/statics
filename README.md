@@ -100,7 +100,7 @@ sudo apt install cmake
 
 ## Chapter 3 - Equilibrium of a Particle
 
-[Example Code](/examples/chapter2/1_algebraic_algebraic_particle_equilibrium_in_2d_2_uknowns.cpp)
+[Example Code](/examples/chapter3/1_algebraic_algebraic_particle_equilibrium_in_2d_2_uknowns.cpp)
 
 <p align="center">
   <img alt="Page 1" src="images/chapter3/Page 1.png">
