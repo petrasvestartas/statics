@@ -33,6 +33,15 @@ namespace geo
         Vector(double x, double y, double z=0);
 
         /**
+         * @brief Constructor that initializes the Vector at the scalars.
+         * @param a The a-scale of a unit vector in x axis.
+         * @param b The b-scale of a unit vector in y axis.
+         * @param c The c-scale of a unit vector in z axis, optional.
+         * @return Vector The vector from scalars.
+         */
+        static Vector from_scalars(double a, double b, double c=0);
+
+        /**
          * @brief Returns a unit vector along the x-axis.
          * 
          * @return Vector The unit vector along the x-axis.
@@ -96,6 +105,20 @@ namespace geo
          * @return A const reference to the coordinate at the given index.
          */
         const double& operator[](int index) const;
+
+        /**
+         * @brief Operator for non-const access of a scalar component.
+         * @param index The index of the coordinate to access (0 for a, 1 for b, 2 for c).
+         * @return A reference to the coordinate at the given index.
+         */
+        double& operator()(int index);
+
+        /**
+         * @brief Operator for const access of a scalar component.
+         * @param index The index of the coordinate to access (0 for a, 1 for b, 2 for c).
+         * @return A const reference to the coordinate at the given index.
+         */
+        const double& operator()(int index) const;
 
         /**
          * @brief Scale the vector by a factor (multiplication).
@@ -182,9 +205,10 @@ namespace geo
 
         /**
          * @brief Get a length of a vector.
+         * @param predefined_length predefined length of the vector, use only when unit _abc vector coordinates are not zero
          * @return A vector distance.
          */
-        double length();
+        double length(double predefined_length = 0);
 
         /**
          * @brief Get a squared length of a vector.
@@ -433,6 +457,7 @@ namespace geo
          * @brief The coordinates of the Vector.
          */
         double _xyz[3];
+        double _abc[3];
         bool _has_length;
         double _length;
         bool _has_unit_vector;

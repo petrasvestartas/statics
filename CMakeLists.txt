@@ -22,16 +22,23 @@ target_link_libraries(${PROJECT_NAME} myproject_lib)
 # Include the src directory and its subdirectories to pick up the .hpp files
 target_include_directories(myproject_lib PUBLIC ${PROJECT_SOURCE_DIR}/src)
 
-# Create executables for each file in the examples/chapter2 directory
-file(GLOB CHAPTER2_EXAMPLES "examples/chapter2/*.cpp")
-foreach(EXAMPLE_FILE ${CHAPTER2_EXAMPLES})
-    # Get the filename without the directory and extension
-    get_filename_component(EXAMPLE_NAME ${EXAMPLE_FILE} NAME_WE)
-    # Create an executable for each example
-    add_executable(${EXAMPLE_NAME} ${EXAMPLE_FILE})
-    # Link the static library to the example executable
-    target_link_libraries(${EXAMPLE_NAME} myproject_lib)
-    # Set the output directory for the executables
-    set_target_properties(${EXAMPLE_NAME} PROPERTIES
-        RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/examples/chapter2/${EXAMPLE_NAME})
+# Get all subdirectories in the examples directory
+file(GLOB EXAMPLE_DIRS "examples/*")
+
+foreach(EXAMPLE_DIR ${EXAMPLE_DIRS})
+    # Get all .cpp files in the current example directory
+    file(GLOB EXAMPLE_FILES "${EXAMPLE_DIR}/*.cpp")
+
+    foreach(EXAMPLE_FILE ${EXAMPLE_FILES})
+        # Get the filename without the directory and extension
+        get_filename_component(EXAMPLE_NAME ${EXAMPLE_FILE} NAME_WE)
+        # Create an executable for each example
+        add_executable(${EXAMPLE_NAME} ${EXAMPLE_FILE})
+        # Link the static library to the example executable
+        target_link_libraries(${EXAMPLE_NAME} myproject_lib)
+        # Set the output directory for the executables, preserving the folder structure
+        get_filename_component(EXAMPLE_DIR_NAME ${EXAMPLE_DIR} NAME)
+        set_target_properties(${EXAMPLE_NAME} PROPERTIES
+            RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/examples/${EXAMPLE_DIR_NAME})
+    endforeach()
 endforeach()

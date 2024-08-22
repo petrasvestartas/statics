@@ -12,37 +12,31 @@ cmake ..
 # Build the project with the specified configuration
 cmake --build . --config Release
 
-# Run the executable
+# Run the main executable
 ./MyProject
 
-
-
-#!/bin/bash
-
+# Run all executables in the examples directory and its subdirectories
 echo "Current working directory: $(pwd)"
 
 # Use an absolute path for BASE_DIR if the script's execution location might vary
-# Example: BASE_DIR="/absolute/path/to/your/project/build/examples/chapter2"
-BASE_DIR="./examples/chapter2"
+BASE_DIR="./examples"
 
 # Check if the base directory exists
 if [ -d "$BASE_DIR" ]; then
-    # Iterate over each subdirectory in the base directory
-    for SUBDIR in "$BASE_DIR"/*; do
-        # Check if the subdirectory is a directory
-        if [ -d "$SUBDIR" ]; then
-            # Iterate over each executable in the subdirectory
-            for example in "$SUBDIR"/*; do
-                # Check if the file is an executable
-                if [ -x "$example" ]; then
-                    # Print in blue color
-                    echo -e "\033[34mRunning example: $example\033[0m"
-                    # Run the example
-                    "$example"
-                else
-                    echo "Skipping non-executable file: $example"
-                fi
+    # Find all directories and files in the base directory and its subdirectories
+    find "$BASE_DIR" -type d -o -type f -executable | sort | while read -r item; do
+        if [ -d "$item" ]; then
+            # If the item is a directory, find all executables within it
+            find "$item" -type f -executable | sort | while read -r example; do
+                # Print in blue color
+                echo -e "\033[34mRunning example: $example\033[0m"
+                # Run the example
+                "$example"
             done
+        elif [ -x "$item" ]; then
+            # If the item is an executable file, run it
+            echo -e "\033[34mRunning example: $item\033[0m"
+            "$item"
         fi
     done
 else

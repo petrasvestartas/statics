@@ -12,6 +12,14 @@ namespace geo
         _has_length = false;
     }
 
+   Vector Vector::from_scalars(double a, double b, double c){
+        Vector v(0, 0, 0);
+        v(0) = a;
+        v(1) = b;
+        v(2) = c;
+        return v;
+    }
+
     Vector Vector::XAxis() {
         return Vector(1, 0, 0);
     }
@@ -48,6 +56,14 @@ namespace geo
 
     const double& Vector::operator[](int index) const {
         return _xyz[index];
+    }
+
+    double& Vector::operator()(int index) {
+        return _abc[index];
+    }
+
+    const double& Vector::operator()(int index) const {
+        return _abc[index];
     }
 
     Vector& Vector::operator*=(double factor) {
@@ -125,8 +141,20 @@ namespace geo
             _xyz[i] = -_xyz[i];
     }
 
-    double Vector::length()
+    double Vector::length(double predefined_length)
     {
+
+        if (predefined_length != 0.0) {
+                // _abc unit vector parameters are needed:
+                _xyz[0] = _abc[0] * predefined_length;
+                _xyz[1] = _abc[1] * predefined_length;
+                _xyz[2] = _abc[2] * predefined_length;
+                _has_length = false;
+                length();
+                _has_length = true;
+        }
+
+
         if (!_has_length) {
 
 
@@ -184,7 +212,9 @@ namespace geo
             else
                 _length = 0.0;
             _has_length = true;
-        } 
+        }
+        
+        
         
         return _length;
     }
@@ -474,7 +504,10 @@ std::string Vector::to_string() {
         << _xyz[0] << " "
         << _xyz[1] << " "
         << _xyz[2] << " "
-        << this->length();
+        << this->length() << " "
+        << _abc[0] << " "
+        << _abc[1] << " "
+        << _abc[2];
 
     return oss.str();
 }
