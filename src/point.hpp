@@ -201,6 +201,10 @@ namespace geo
         static double area_quad(const std::vector<Point>& vertices);
 
 
+        // Convert matrix to string
+        std::string to_string() const;
+
+
     private:
         /**
          * @brief The coordinates of the point.

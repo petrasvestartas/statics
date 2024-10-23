@@ -285,5 +285,13 @@ namespace geo
         return std::abs(area) / 2.0;
     }
 
+    // Convert matrix to string
+    std::string Point::to_string() const {
+        std::ostringstream oss;
+        oss << "Point: ";
+        oss << _xyz[0] << " " << _xyz[1] << " " << _xyz[2];
+        return oss.str();
+    }
+
 
 } // namespace geo

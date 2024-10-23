@@ -3,6 +3,8 @@
 #include "tests/test_point_and_vector.hpp"
 #include "tests/test_arc.hpp"
 #include "tests/test_limit_analysis.hpp"
+#include "tests/test_matrix.hpp"
+#include "tests/test_xform.hpp"
 
 // Main function - execution starts here
 int main() {
@@ -11,5 +13,7 @@ int main() {
     test_point_and_vector_main();
     test_arc_main();
     test_limit_analysis_main();
+    test_matrix_main();
+    test_xform_main();
     return 0; // Returns 0 to signal the end of the program
 }

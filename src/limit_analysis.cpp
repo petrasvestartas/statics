@@ -81,13 +81,13 @@ namespace geo
 
         //CONSIDER SIGNS
         Vl[1] = Hl[0] * el[0][1] + W[1] * c[0] / el[1][0];
-        std::cout << "Hl[0]: " << Hl[0] << " el[1][1]: " << el[1][1] << " W[1]: " << W[1] << " c[0]: " << c[0] << " el[1][0]: " << el[1][0] << std::endl;
+        // std::cout << "Hl[0]: " << Hl[0] << " el[1][1]: " << el[1][1] << " W[1]: " << W[1] << " c[0]: " << c[0] << " el[1][0]: " << el[1][0] << std::endl;
 
 
         //  // W[1] * c[0] = Vl * el[1][0] + Vr * er[1][0] -> will take Vr eccentricity as 0 to have one uknonw
         // double Vl_y = W[1] * el[1][0] / eccentricity0;
         // std::cout << "W[1]: " << W[1] << " c[0]: " << c[0] << " el[1][0]: " << el[1][0] << std::endl;
-        std::cout << "Vl_y: " << Vl[1] << std::endl; //should be around -2370
+        // std::cout << "Vl_y: " << Vl[1] << std::endl; //should be around -2370
 
         // Verify if this correct by parabola
 
