@@ -450,7 +450,7 @@ namespace geo
          * @brief Returns a string representation of the Vector including its class name and xyz coordinates.
          * @return A string representation of the Vector.
          */
-        std::string to_string();
+        std::string to_string() ;
 
     private:
         /**
