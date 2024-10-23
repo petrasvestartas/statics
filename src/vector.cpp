@@ -154,70 +154,80 @@ namespace geo
                 _has_length = true;
         }
 
-
         if (!_has_length) {
-
-
-            double x = abs(_xyz[0]);
-            double y = abs(_xyz[1]);
-            double z = abs(_xyz[2]);
-
-            // Handle two zero case:
-            bool x_zero = x < geo::GLOBALS::ZERO_TOLERANCE;
-            bool y_zero = y < geo::GLOBALS::ZERO_TOLERANCE;
-            bool z_zero = z < geo::GLOBALS::ZERO_TOLERANCE;
-
-            if (x_zero && y_zero && z_zero)
-            {
-                _length = 0.0;
-                return _length;;
-            } else if (x_zero && y_zero) {
-                _length = z;
-                return _length;
-            } else if (x_zero && z_zero) {
-                _length = y;
-                return _length;
-            } else if (y_zero && z_zero) {
-                _length = x;
-                return _length;
-            }
-
-            // Handle one or none zero case:
-
-            if (y >= x && y >= z)
-            {
-                _length = x;
-                x = y;
-                y = _length;
-            }
-            else if (z >= x && z >= y)
-            {
-                _length = x;
-                x = z;
-                z = _length;
-            }
-
-            // For small denormalized doubles (positive but smaller
-            // than DOUBLE_MIN), some compilers/FPUs set 1.0/x to +INF.
-            // Without the DOUBLE_MIN test we end up with
-            // microscopic vectors that have infinite length!
-            if (x > GLOBALS::DOUBLE_MIN)
-            {
-                y /= x;
-                z /= x;
-                _length = x * sqrt(1.0 + y * y + z * z);
-            }
-            else if (x > 0.0 && GLOBALS::IS_FINITE(x))
-                _length = x;
-            else
-                _length = 0.0;
+            _length = compute_length();
             _has_length = true;
         }
         
-        
-        
         return _length;
     }
+
+    double Vector::compute_length() const
+    {
+        double length = 0;
+
+
+        double x = abs(_xyz[0]);
+        double y = abs(_xyz[1]);
+        double z = abs(_xyz[2]);
+
+        // Handle two zero case:
+        bool x_zero = x < geo::GLOBALS::ZERO_TOLERANCE;
+        bool y_zero = y < geo::GLOBALS::ZERO_TOLERANCE;
+        bool z_zero = z < geo::GLOBALS::ZERO_TOLERANCE;
+
+        if (x_zero && y_zero && z_zero)
+        {
+            length = 0.0;
+            return length;
+        } else if (x_zero && y_zero) {
+            length = z;
+            return length;
+        } else if (x_zero && z_zero) {
+            length = y;
+            return length;
+        } else if (y_zero && z_zero) {
+            length = x;
+            return length;
+        }
+
+        // Handle one or none zero case:
+
+        if (y >= x && y >= z)
+        {
+            length = x;
+            x = y;
+            y = length;
+        }
+        else if (z >= x && z >= y)
+        {
+            length = x;
+            x = z;
+            z = length;
+        }
+
+        // For small denormalized doubles (positive but smaller
+        // than DOUBLE_MIN), some compilers/FPUs set 1.0/x to +INF.
+        // Without the DOUBLE_MIN test we end up with
+        // microscopic vectors that have infinite length!
+        if (x > GLOBALS::DOUBLE_MIN)
+        {
+            y /= x;
+            z /= x;
+            length = x * sqrt(1.0 + y * y + z * z);
+        }
+        else if (x > 0.0 && GLOBALS::IS_FINITE(x))
+            length = x;
+        else
+            length = 0.0;
+    
+        
+        
+        
+        return length;
+    }
+
+
 
     bool Vector::unitize() {
         bool rc = false;

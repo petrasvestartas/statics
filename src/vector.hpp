@@ -210,6 +210,8 @@ namespace geo
          */
         double length(double predefined_length = 0);
 
+        double compute_length() const; // Declare const overload
+
         /**
          * @brief Get a squared length of a vector.
          * @return True if a vector is unitized.

@@ -50,6 +50,13 @@ namespace geo
         double distance_to_point(const Point& point) const;
 
         /**
+         * @brief Overloaded subscript operator to access the coefficients of the plane equation.
+         * @param index The index of the coefficient (0 to 3).
+         * @return The coefficient at the specified index.
+         */
+        double operator[](size_t index) const;
+
+        /**
          * @brief Calculates the squared distance from a point to the plane.
          * @param point The point.
          * @return The squared distance from the point to the plane.
@@ -78,10 +85,16 @@ namespace geo
          * @brief Scales the plane down by a factor of global SCALE.
          */
         void scale_down();
+        
+        /**
+        * @brief Get numeric value of plane from a point.
+        */
+        double value_at(const Point &P) const;
 
 
     private:
         Point point; ///< The point on the plane.
         Vector normal; ///< The normal vector of the plane.
+        double equation[4];
     };
 }

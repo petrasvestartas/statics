@@ -4,21 +4,24 @@
 namespace geo
 {
     Plane::Plane(const Point& point, const Vector& normal)
-        : point(point), normal(normal) {}
+        : point(point), normal(normal) {
+        // Calculate the plane equation coefficients Ax + By + Cz + D = 0
+        equation[0] = normal[0];
+        equation[1] = normal[1];
+        equation[2] = normal[2];
+        equation[3] = -(normal[0] * point[0] + normal[1] * point[1] + normal[2] * point[2]);
+    }
 
-    Plane::Plane(const double equation[4]) {
-        normal = Vector(equation[0], equation[1], equation[2]);
-        // Choose a point on the plane. If the normal is not zero, we can choose a point on the x, y or z axis.
-        if (normal[0] != 0) {
-            point = Point(-equation[3] / equation[0], 0, 0);
-        } else if (normal[1] != 0) {
-            point = Point(0, -equation[3] / equation[1], 0);
-        } else if (normal[2] != 0) {
-            point = Point(0, 0, -equation[3] / equation[2]);
-        } else {
-            // If the normal is zero, the equation represents the entire space, and we can choose any point.
-            point = Point(0, 0, 0);
+    Plane::Plane(const double e[4]) {
+        for (size_t i = 0; i < 4; ++i) {
+            equation[i] = e[i];
         }
+        // Calculate the point and normal vector from the equation
+        normal = Vector(equation[0], equation[1], equation[2]);
+        if (normal.length() == 0) {
+            throw std::invalid_argument("Normal vector cannot be zero.");
+        }
+        point = Point(0, 0, -equation[3] / equation[2]); // Simplified for demonstration
     }
 
     const Point& Plane::get_point() const {
@@ -29,12 +32,16 @@ namespace geo
         return normal;
     }
 
-    double Plane::distance_to_point(const Point& point) const {
-        double equation[4];
-        get_plane_equation(equation);
-        double numerator = std::abs(equation[0] * point[0] + equation[1] * point[1] + equation[2] * point[2] + equation[3]);
-        double denominator = std::sqrt(equation[0] * equation[0] + equation[1] * equation[1] + equation[2] * equation[2]);
-        return numerator / denominator;
+    double Plane::distance_to_point(const Point& point) const { 
+        double length = normal.compute_length();
+        return std::abs(normal[0] * point[0] + normal[1] * point[1] + normal[2] * point[2] + equation[3]) / length;
+    }
+
+    double Plane::operator[](size_t index) const {
+        if (index >= 4) {
+            throw std::out_of_range("Index out of range. Valid indices are 0 to 3.");
+        }
+        return equation[index];
     }
 
     double Plane::squared_distance_to_point(const Point& point) const {
@@ -60,6 +67,12 @@ namespace geo
         equation[1] = normal[1];
         equation[2] = normal[2];
         equation[3] = -(normal[0] * point[0] + normal[1] * point[1] + normal[2] * point[2]);
+    }
+
+    
+    double Plane::value_at(const Point &point) const
+    {
+        return (equation[0] * point[0] + equation[1] * point[1] + equation[2] * point[2] + equation[3]);
     }
 
 }
