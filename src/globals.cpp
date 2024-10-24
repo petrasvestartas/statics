@@ -1,10 +1,8 @@
 #include "globals.hpp"
 
-namespace geo
-{
+namespace geo {
 
-    double GLOBALS::SCALE = 1e6;
-    double GLOBALS::ANGLE = 0.11;
+double GLOBALS::SCALE = 1e6;
+double GLOBALS::ANGLE = 0.11;
 
-
-} // namespace geo
+}  // namespace geo

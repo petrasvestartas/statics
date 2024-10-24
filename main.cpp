@@ -1,11 +1,13 @@
-#include <iostream> // Includes the Standard Input Output Streams Library
-#include "tests/test_vector.hpp"
-#include "tests/test_point_and_vector.hpp"
+#include <iostream>  // Includes the Standard Input Output Streams Library
+
 #include "tests/test_arc.hpp"
+#include "tests/test_intersection.hpp"
 #include "tests/test_limit_analysis.hpp"
 #include "tests/test_matrix.hpp"
-#include "tests/test_xform.hpp"
 #include "tests/test_pline.hpp"
+#include "tests/test_point_and_vector.hpp"
+#include "tests/test_vector.hpp"
+#include "tests/test_xform.hpp"
 
 // Main function - execution starts here
 int main() {
@@ -17,5 +19,6 @@ int main() {
     test_matrix_main();
     test_xform_main();
     test_pline_main();
-    return 0; // Returns 0 to signal the end of the program
+    test_intersection_main();
+    return 0;  // Returns 0 to signal the end of the program
 }

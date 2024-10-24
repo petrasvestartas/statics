@@ -34,6 +34,12 @@ sudo apt install cmake
 /home/petras/brg/2_code/statics/build.sh
 ```
 
+Format document
+```bash
+  Ctrl+Shift+I
+```
+
+
 ## Inspiration
 
 <p align="center">

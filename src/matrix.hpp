@@ -1,46 +1,41 @@
 #pragma once
 
-#include <vector>
 #include <iostream>
 #include <sstream>
+#include <vector>
 
-namespace geo
-{
+namespace geo {
 
-    class Matrix {
-    public:
-        // Constructor to initialize an m x n matrix with zeros
-        Matrix(size_t rows, size_t cols);
+class Matrix {
+   public:
+    // Constructor to initialize an m x n matrix with zeros
+    Matrix(size_t rows, size_t cols);
 
-        // Constructor with initializer list
-        Matrix(std::initializer_list<std::initializer_list<double>> values);
+    // Constructor with initializer list
+    Matrix(std::initializer_list<std::initializer_list<double>> values);
 
-        // Access elements
-        double& operator()(size_t row, size_t col);
-        const double& operator()(size_t row, size_t col) const;
+    // Access elements
+    double& operator()(size_t row, size_t col);
+    const double& operator()(size_t row, size_t col) const;
 
-        // Matrix multiplication
-        Matrix operator*(const Matrix& other) const;
+    // Matrix multiplication
+    Matrix operator*(const Matrix& other) const;
 
-        // Convert matrix to string
-        std::string to_string() const;
+    // Convert matrix to string
+    std::string to_string() const;
 
-        // Print matrix
-        void print() const;
+    // Get number of rows
+    size_t get_rows() const;
 
-        // Get number of rows
-        size_t get_rows() const;
+    // Get number of columns
+    size_t get_cols() const;
 
-        // Get number of columns
-        size_t get_cols() const;
+    // Static method to create an identity matrix
+    static Matrix identity(size_t size);
 
-        // Static method to create an identity matrix
-        static Matrix identity(size_t size);
-
-
-    private:
-        size_t rows;
-        size_t cols;
-        std::vector<std::vector<double>> data;
-    };
-}
+   private:
+    size_t rows;
+    size_t cols;
+    std::vector<std::vector<double>> data;
+};
+}  // namespace geo
