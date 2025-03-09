@@ -253,6 +253,7 @@ void scale_down() {
 }
 
 int test_vector_main() {
+    std::cout << "Running test_vector..." << std::endl;
     default_constructor();
     constructor();
     static_methods();

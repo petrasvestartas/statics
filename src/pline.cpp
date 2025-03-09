@@ -35,7 +35,7 @@ bool Pline::cut(std::vector<Point>& points, const Plane& plane, std::vector<Poin
     std::vector<std::vector<Point>> polygons_culled;
     Plane xy_plane = Plane::world_xy();
 
-    if ((counter != 0 and counter != points_transformed.size()) == false) return false;
+    if ((counter != 0 && counter != points_transformed.size()) == false) return false;
 
     // Intersect polyline segments with the plane
     std::vector<Point> polygon_points;

@@ -125,6 +125,7 @@ void test_plane_to_plane_xy_to_plane_to_xy() {
 }
 
 int test_xform_main() {
+    std::cout << "Running test_xform..." << std::endl;
     test_translation();
     test_scaling();
     test_change_of_basis();

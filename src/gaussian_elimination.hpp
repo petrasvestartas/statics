@@ -1,62 +1,75 @@
 #pragma once
 
-#include <array>
-#include <iostream>
-#include <iomanip>
+#include "matrix.hpp"
+#include <algorithm>
+#include <cassert>
 #include <cmath>
-#include <limits> 
+#include <iomanip>
+#include <iostream>
+#include <vector>
 
-// Solves system of linear equations using Gaussian elimination
-// Input matrix should be in augmented form [A|b] where A is the coefficient matrix
-// and b is the right-hand side vector
-// @param matrix - The augmented matrix [A|b] where the last column is b
-// @return - Solution array of size N, where N is the number of variables
-template<size_t N>
-std::array<double, N> gaussian_elimination(std::array<std::array<double, N+1>, N>& matrix) {
-    std::array<double, N> solution;
+namespace geo {
 
-    // Forward elimination
-    for (size_t i = 0; i < N; i++) {
-        // Find pivot
-        size_t pivot_row = i;
-        double max_val = std::abs(matrix[i][i]);
-        
-        for (size_t j = i + 1; j < N; j++) {
-            if (std::abs(matrix[j][i]) > max_val) {
-                max_val = std::abs(matrix[j][i]);
-                pivot_row = j;
-            }
-        }
-
-        // Check if matrix is singular
-        if (std::abs(max_val) < 1e-10) {
-            // Return array filled with NaN to indicate no solution
-            solution.fill(std::numeric_limits<double>::quiet_NaN());
-            return solution;
-        }
-
-        // Swap rows if necessary
-        if (pivot_row != i) {
-            matrix[i].swap(matrix[pivot_row]);
-        }
-
-        // Eliminate column entries below pivot
-        for (size_t j = i + 1; j < N; j++) {
-            double factor = matrix[j][i] / matrix[i][i];
-            for (size_t k = i; k < N + 1; k++) {
-                matrix[j][k] -= factor * matrix[i][k];
-            }
-        }
-    }
-
-    // Back substitution
-    for (int i = N - 1; i >= 0; i--) {
-        double sum = matrix[i][N];  // Get constant term
-        for (size_t j = i + 1; j < N; j++) {
-            sum -= matrix[i][j] * solution[j];
-        }
-        solution[i] = sum / matrix[i][i];
-    }
-
-    return solution;
+void swap_rows(Matrix& m, size_t i, size_t j) {
+    size_t columns = m.get_cols();
+    for (size_t k = 0; k < columns; ++k)
+        std::swap(m(i, k), m(j, k));
 }
+
+std::vector<double> gauss_partial(const Matrix& a0, const std::vector<double>& b0) {
+    size_t n = a0.get_rows();
+    assert(a0.get_cols() == n);
+    assert(b0.size() == n);
+    
+    // make augmented matrix
+    Matrix a(n, n + 1);
+    for (size_t i = 0; i < n; ++i) {
+        for (size_t j = 0; j < n; ++j)
+            a(i, j) = a0(i, j);
+        a(i, n) = b0[i];
+    }
+    
+    // WP algorithm from Gaussian elimination page
+    // produces row echelon form
+    for (size_t k = 0; k < n; ++k) {
+        // Find pivot for column k
+        size_t max_index = k;
+        double max_value = 0;
+        for (size_t i = k; i < n; ++i) {
+            // compute scale factor = max abs in row
+            double scale_factor = 0;
+            for (size_t j = k; j < n; ++j)
+                scale_factor = std::max(std::abs(a(i, j)), scale_factor);
+            if (scale_factor == 0)
+                continue;
+            // scale the abs used to pick the pivot
+            double abs = std::abs(a(i, k))/scale_factor;
+            if (abs > max_value) {
+                max_index = i;
+                max_value = abs;
+            }
+        }
+        if (a(max_index, k) == 0)
+            throw std::runtime_error("matrix is singular");
+        if (k != max_index)
+            swap_rows(a, k, max_index);
+        for (size_t i = k + 1; i < n; ++i) {
+            double f = a(i, k)/a(k, k);
+            for (size_t j = k + 1; j <= n; ++j)
+                a(i, j) -= a(k, j) * f;
+            a(i, k) = 0;
+        }
+    }
+    
+    // now back substitute to get result
+    std::vector<double> x(n);
+    for (size_t i = n; i-- > 0; ) {
+        x[i] = a(i, n);
+        for (size_t j = i + 1; j < n; ++j)
+            x[i] -= a(i, j) * x[j];
+        x[i] /= a(i, i);
+    }
+    return x;
+}
+
+} // namespace geo

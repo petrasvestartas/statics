@@ -16,6 +16,7 @@ void test_matrix() {
 }
 
 int test_matrix_main() {
+    std::cout << "Running test_matrix..." << std::endl;
     test_matrix();
     return 0;
 }

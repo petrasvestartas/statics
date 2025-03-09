@@ -86,6 +86,7 @@ void test_sum_moment_varignon() {
 }
 
 int test_point_and_vector_main() {
+    std::cout << "Running test_point_and_vector..." << std::endl;
     test_moment_varignon();
     test_sum_moment_varignon();
     return 0;
