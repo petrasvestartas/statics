@@ -1,9 +1,9 @@
-#include <iostream>
 #include <iomanip>
 #include <array>
 #include <vector>
-#include "../../src/gaussian_elimination.hpp"
+#include "../../src/matrix_gaussian_elimination.hpp"
 #include "../../src/matrix.hpp"
+#include "../../src/logger.hpp"
 
 int main() {
     // Solving a 3x3 system of linear equations:
@@ -18,11 +18,11 @@ int main() {
     std::vector<double> b{8, -11, -3};
 
     // Print the system of equations
-    std::cout << "Solving the system of equations:" << std::endl;
-    std::cout << "2x + y - z = 8" << std::endl;
-    std::cout << "-3x - y + 2z = -11" << std::endl;
-    std::cout << "-2x + y + 2z = -3" << std::endl;
-    std::cout << std::endl;
+    geo::log("Solving the system of equations:");
+    geo::log("2x + y - z = 8");
+    geo::log("-3x - y + 2z = -11");
+    geo::log("-2x + y + 2z = -3");
+    geo::log("");
 
     // Solve the system using Gaussian elimination
     std::vector<double> solution;
@@ -30,22 +30,22 @@ int main() {
         solution = geo::gauss_partial(A, b);
 
         // Print the solution
-        std::cout << "Solution:" << std::endl;
-        std::cout << "x = " << std::fixed << std::setprecision(6) << solution[0] << std::endl;
-        std::cout << "y = " << solution[1] << std::endl;
-        std::cout << "z = " << solution[2] << std::endl;
+        geo::log("Solution:");
+        geo::log("x = " + std::to_string(solution[0]));
+        geo::log("y = " + std::to_string(solution[1]));
+        geo::log("z = " + std::to_string(solution[2]));
 
         // Verify the solution by substituting back into the equations
-        std::cout << "\nVerification:" << std::endl;
+        geo::log("\nVerification:");
         double eq1 = 2*solution[0] + solution[1] - solution[2];
         double eq2 = -3*solution[0] - solution[1] + 2*solution[2];
         double eq3 = -2*solution[0] + solution[1] + 2*solution[2];
 
-        std::cout << "Equation 1: " << eq1 << " = 8" << std::endl;
-        std::cout << "Equation 2: " << eq2 << " = -11" << std::endl;
-        std::cout << "Equation 3: " << eq3 << " = -3" << std::endl;
+        geo::log("Equation 1: " + std::to_string(eq1) + " = 8");
+        geo::log("Equation 2: " + std::to_string(eq2) + " = -11");
+        geo::log("Equation 3: " + std::to_string(eq3) + " = -3");
     } catch (const std::runtime_error& e) {
-        std::cout << "Error: " << e.what() << std::endl;
+        geo::log("Error: " + std::string(e.what()), geo::LogLevel::ERROR);
     }
 
     return 0;

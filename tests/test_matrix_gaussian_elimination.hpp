@@ -3,10 +3,10 @@
 #include <array>
 #include <limits>
 #include "test_methods.hpp"
-#include "gaussian_elimination.hpp"
+#include "matrix_gaussian_elimination.hpp"
 #include "matrix.hpp"
 
-void test_gaussian_elimination() {
+void test_matrix_gaussian_elimination() {
     std::cout << "Testing Gaussian Elimination..." << std::endl;
 
     // Test 1: Simple 2x2 system
@@ -59,8 +59,8 @@ void test_gaussian_elimination() {
     std::cout << "All Gaussian Elimination tests passed!" << std::endl;
 }
 
-int test_gaussian_elimination_main() {
-    std::cout << "Running test_gaussian_elimination..." << std::endl;
-    test_gaussian_elimination();
+int test_matrix_gaussian_elimination_main() {
+    std::cout << "Running test_matrix_gaussian_elimination..." << std::endl;
+    test_matrix_gaussian_elimination();
     return 0;
 }

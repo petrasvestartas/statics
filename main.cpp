@@ -7,7 +7,7 @@
 #include "tests/test_point_and_vector.hpp"
 #include "tests/test_vector.hpp"
 #include "tests/test_xform.hpp"
-#include "tests/test_gaussian_elimination.hpp"
+#include "tests/test_matrix_gaussian_elimination.hpp"
 
 
 
@@ -21,7 +21,7 @@ int main() {
     test_xform_main();
     test_pline_main(); // dont work
     test_intersection_main(); // not implemented
-    test_gaussian_elimination_main();
+    test_matrix_gaussian_elimination_main();
 
 
     return 0;

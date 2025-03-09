@@ -16,7 +16,7 @@ void test_line_plane_intersection() {
     // Intersect
     geo::Point output;
     bool result = geo::Intersection::line_plane(line, plane, output, false);
-    std::cout << "  No tests implemented." << std::endl;
+    geo::log("WARNING: no tests implemented!", geo::LogLevel::WARNING);
 }
 
 int test_intersection_main() {

@@ -18,7 +18,8 @@ void test_cut() {
     std::vector<geo::Point> points_cut;
     bool result = geo::Pline::cut(points, plane, points_cut);
 
-    std::cout << "  Does Not Work: " << points_cut.size() << std::endl;
+    geo::log("WARNING: does not work, revise the cut algorithm!", geo::LogLevel::WARNING);
+
 
     for (auto& p : points_cut){
         std::cout << p[0] << " " << p[1] << " " << p[2] << std::endl;
