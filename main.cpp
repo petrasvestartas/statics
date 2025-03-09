@@ -8,10 +8,13 @@
 #include "tests/test_point_and_vector.hpp"
 #include "tests/test_vector.hpp"
 #include "tests/test_xform.hpp"
+#include "tests/test_gaussian_elimination.hpp"
 
-// Main function - execution starts here
+
+
 int main() {
-    // std::cout << "Hello, World!" << std::endl; // Outputs "Hello, World!" to the console
+
+    std::cout << "Hello, World!" << std::endl; // Outputs "Hello, World!" to the console
     test_vector_main();
     test_point_and_vector_main();
     test_arc_main();
@@ -20,5 +23,8 @@ int main() {
     test_xform_main();
     test_pline_main();
     test_intersection_main();
-    return 0;  // Returns 0 to signal the end of the program
+    test_gaussian_elimination_main();
+
+
+    return 0;
 }
