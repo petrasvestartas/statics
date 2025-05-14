@@ -13,6 +13,8 @@ Line::Line(const double& x0, const double& y0, const double& z0, const double& x
     points[1] = Point(x1, y1, z1);
 }
 
+
+
 Point& Line::operator[](int index) { return points[index]; }
 
 const Point& Line::operator[](int index) const { return points[index]; }

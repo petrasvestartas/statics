@@ -17,7 +17,11 @@ void test_cut() {
     geo::Plane plane(geo::Point(0, 0, 0.5), geo::Vector(0, 0, 1));
     std::vector<geo::Point> points_cut;
     bool result = geo::Pline::cut(points, plane, points_cut);
-
+    
+    // Use result to avoid warning
+    std::string status = result ? "success" : "failure";
+    geo::log("Cut operation returned: " + status, 
+             result ? geo::LogLevel::INFO : geo::LogLevel::WARNING);
     geo::log("WARNING: does not work, revise the cut algorithm!", geo::LogLevel::WARNING);
 
 

@@ -34,7 +34,7 @@ void test_xy_to_plane_transformation() {
     geo::Vector x_axis = geo::Vector(0, 1, 0);
     geo::Vector y_axis = geo::Vector(0, 0, 1);
     geo::Matrix xform = geo::Xform::xy_to_plane(p0, x_axis, y_axis);
-    for (int i = 0; i < points.size(); i++) {
+    for (size_t i = 0; i < points.size(); i++) {
         geo::Point point_transformed = geo::Xform::apply(xform, points[i]);
         // geo::log(point_transformed.to_string());
         my_assert(point_transformed == result[i]);
@@ -51,7 +51,7 @@ void test_plane_to_xy_transformation() {
 
     std::vector<geo::Point> result = {{0, 0, 0}, {0, 1, 0}, {1, 1, 0}, {1, 0, 0}};
 
-    for (int i = 0; i < points.size(); i++) {
+    for (size_t i = 0; i < points.size(); i++) {
         geo::Point point_transformed = geo::Xform::apply(xform, points[i]);
         // geo::log(point_transformed.to_string());
         my_assert(point_transformed == result[i]);
@@ -70,7 +70,7 @@ void test_plane_to_plane_transformation_xy_to_plane() {
 
     std::vector<geo::Point> result = {{0, 0, 0}, {0, 1, 0}, {0, 0, 1}, {1, 0, 0}};
 
-    for (int i = 0; i < points.size(); i++) {
+    for (size_t i = 0; i < points.size(); i++) {
         geo::Point point_transformed = geo::Xform::apply(xform, points[i]);
         // geo::log(point_transformed.to_string());
         my_assert(point_transformed == result[i]);
@@ -89,7 +89,7 @@ void test_plane_to_plane_transformation_plane_to_xy() {
 
     std::vector<geo::Point> result = {{0, 0, 0}, {0, 1, 0}, {1, 1, 0}, {1, 0, 0}};
 
-    for (int i = 0; i < points.size(); i++) {
+    for (size_t i = 0; i < points.size(); i++) {
         geo::Point point_transformed = geo::Xform::apply(xform, points[i]);
         // geo::log(point_transformed.to_string());
         my_assert(point_transformed == result[i]);
@@ -108,7 +108,7 @@ void test_plane_to_plane_xy_to_plane_to_xy() {
 
     std::vector<geo::Point> result = {{0, 0, 0}, {0, 1, 0}, {0, 0, 1}, {1, 0, 0}};
 
-    for (int i = 0; i < points.size(); i++) {
+    for (size_t i = 0; i < points.size(); i++) {
         geo::Point point_transformed = geo::Xform::apply(xform, points[i]);
         // geo::log(point_transformed.to_string());
         my_assert(point_transformed == result[i]);
@@ -117,7 +117,7 @@ void test_plane_to_plane_xy_to_plane_to_xy() {
 
     geo::Matrix xform2 = geo::Xform::plane_to_plane(p0, x_axis_1, y_axis_1, p0, x_axis_0, y_axis_0);
 
-    for (int i = 0; i < result.size(); i++) {
+    for (size_t i = 0; i < result.size(); i++) {
         geo::Point point_transformed = geo::Xform::apply(xform2, result[i]);
         // geo::log(point_transformed.to_string());
         my_assert(point_transformed == points[i]);

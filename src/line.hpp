@@ -34,6 +34,8 @@ class Line {
     Line(const double& x0, const double& y0, const double& z0, const double& x1, const double& y1,
          const double& z1);
 
+
+
     /**
      * @brief Subscript operator for non-const access.
      * @param index The index of the point to access (0 for the first point, 1 for the second

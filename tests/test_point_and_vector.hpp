@@ -11,7 +11,9 @@ void test_moment_varignon() {
     geo::Point p(5, 2, 0);
     geo::Vector v(4, -3, 0);
     v.rescale(100);
+    // Calculate length but use it in a comment to avoid warning
     double length = v.length();
+    std::cout << "Vector length after rescaling: " << length << std::endl;
     double moment = geo::moment_varignon(p, v);
     my_assert(std::abs(moment + 460) < geo::GLOBALS::ZERO_TOLERANCE);
 

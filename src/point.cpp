@@ -66,6 +66,8 @@ double Point::y() const { return _xyz[1]; }
 
 double Point::z() const { return _xyz[2]; }
 
+
+
 float Point::ccw(Point& a, Point& b, Point& c) {
     return (b[0] - a[0]) * (c[1] - a[1]) - (b[1] - a[1]) * (c[0] - a[0]);
 }
@@ -264,3 +266,9 @@ std::string Point::to_string() const {
 }
 
 }  // namespace geo
+
+// Implementation of the stream insertion operator
+std::ostream& geo::operator<<(std::ostream& os, const geo::Point& point) {
+    os << "Point: " << point.x() << " " << point.y() << " " << point.z();
+    return os;
+}

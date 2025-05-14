@@ -4,9 +4,24 @@ cmake_minimum_required(VERSION 3.22)
 # Define the project and the languages used
 project(MyProject VERSION 1.0 LANGUAGES CXX)
 
+# Enable compilation database generation for better IntelliSense
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+
 # Specify the C++ standard
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
+
+# Add compiler warning flags
+if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+    add_compile_options(-Wall -Wextra -Wpedantic)
+    # Uncomment to enable more aggressive warnings
+    # add_compile_options(-Werror)
+elseif(MSVC)
+    add_compile_options(/W4)
+    # Uncomment to treat warnings as errors
+    # add_compile_options(/WX)
+endif()
 
 # Add executable for the project. Include main.cpp and all source files from the src directory
 file(GLOB_RECURSE SOURCES "src/*.cpp")

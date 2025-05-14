@@ -15,7 +15,11 @@ void test_line_plane_intersection() {
 
     // Intersect
     geo::Point output;
+    // Store result but use it to avoid warning
     bool result = geo::Intersection::line_plane(line, plane, output, false);
+    std::string status = result ? "success" : "failed";
+    geo::log("Line-plane intersection calculated: " + status, 
+             result ? geo::LogLevel::INFO : geo::LogLevel::WARNING);
     geo::log("WARNING: no tests implemented!", geo::LogLevel::WARNING);
 }
 

@@ -1,5 +1,6 @@
 #pragma once
 #include <cmath>
+#include <iostream>
 #include <vector.hpp>  // Never include point into vector, it will cause circular dependency
 #include <vector>
 
@@ -133,6 +134,8 @@ class Point {
      */
     double z() const;
 
+
+
     /**
      * @brief Check if the three points of triangle are in a counterclockwise order.
      * @param a The first point.
@@ -209,4 +212,13 @@ class Point {
      */
     double _xyz[3];
 };
-}  // namespace geo
+
+/**
+ * @brief Stream insertion operator for Point objects.
+ * @param os The output stream.
+ * @param point The Point to insert into the stream.
+ * @return A reference to the output stream.
+ */
+std::ostream& operator<<(std::ostream& os, const geo::Point& point);
+
+} // namespace geo
